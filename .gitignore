@@ -1,7 +1,7 @@
 # Generic ignores
 *.log
 *.log.*
-*.db
+*.db*
 *.db-shm
 *.db-wal
 *.pyc
