@@ -1,0 +1,27 @@
+{
+  "storage_version": 1,
+  "name": "esphome_esp32_led_salon",
+  "comment": null,
+  "esphome_version": "1.16.2",
+  "src_version": 1,
+  "arduino_version": "espressif32@1.12.4",
+  "address": "192.168.0.57",
+  "esp_platform": "ESP32",
+  "board": "nodemcu-32s",
+  "build_path": "/config/esphome/esphome_esp32_led_salon",
+  "firmware_bin_path": "/data/esphome_esp32_led_salon/.pioenvs/esphome_esp32_led_salon/firmware.bin",
+  "loaded_integrations": [
+    "api",
+    "async_tcp",
+    "binary_sensor",
+    "esphome",
+    "fastled_base",
+    "fastled_clockless",
+    "light",
+    "logger",
+    "network",
+    "ota",
+    "status",
+    "wifi"
+  ]
+}

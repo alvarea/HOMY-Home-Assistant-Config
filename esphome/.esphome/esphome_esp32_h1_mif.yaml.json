@@ -1,0 +1,28 @@
+{
+  "storage_version": 1,
+  "name": "esphome_esp32_h1_miflora",
+  "comment": null,
+  "esphome_version": "1.14.5",
+  "src_version": 1,
+  "arduino_version": "espressif32@1.12.1",
+  "address": "192.168.0.49",
+  "esp_platform": "ESP32",
+  "board": "nodemcu-32s",
+  "build_path": "/config/esphome/esphome_esp32_h1_miflora",
+  "firmware_bin_path": "/data/esphome_esp32_h1_miflora/.pioenvs/esphome_esp32_h1_miflora/firmware.bin",
+  "loaded_integrations": [
+    "api",
+    "async_tcp",
+    "binary_sensor",
+    "esp32_ble_tracker",
+    "esphome",
+    "network",
+    "ota",
+    "sensor",
+    "status",
+    "wifi",
+    "xiaomi_ble",
+    "xiaomi_hhccjcy01",
+    "xiaomi_lywsdcgq"
+  ]
+}

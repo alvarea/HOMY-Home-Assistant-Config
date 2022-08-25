@@ -1,0 +1,30 @@
+{
+  "storage_version": 1,
+  "name": "esphome_esp32_hub2_ble",
+  "comment": null,
+  "esphome_version": "2022.8.0",
+  "src_version": 1,
+  "address": "192.168.0.47",
+  "web_port": null,
+  "esp_platform": "ESP32",
+  "build_path": "/config/esphome/.esphome/build/esphome_esp32_hub2_ble",
+  "firmware_bin_path": "/data/esphome_esp32_hub2_ble/.pioenvs/esphome_esp32_hub2_ble/firmware.bin",
+  "loaded_integrations": [
+    "api",
+    "atc_mithermometer",
+    "binary_sensor",
+    "esp32",
+    "esp32_ble_tracker",
+    "esphome",
+    "logger",
+    "md5",
+    "mdns",
+    "network",
+    "ota",
+    "preferences",
+    "sensor",
+    "socket",
+    "status",
+    "wifi"
+  ]
+}

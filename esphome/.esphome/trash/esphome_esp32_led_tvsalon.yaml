@@ -1,0 +1,93 @@
+#
+# ESPHOME - ESP32 - LED TV SALON
+#
+esphome:
+  name: esphome_esp32_led_tvsalon
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: 'WLAN.alvarea.net'
+  password: '3286202581200'
+  manual_ip:
+    static_ip: 192.168.0.57
+    gateway: 192.168.0.1
+    subnet: 255.255.255.0
+
+api:
+
+# Enable logging
+logger:
+
+binary_sensor:
+  - platform: status
+    name: "esphome Led TV Salon Status"
+
+ota:
+
+light:
+  - platform: fastled_clockless
+    chipset: WS2812B
+    pin: GPIO2
+    num_leds: 300
+    rgb_order: GRB
+    name: "LED TV Salon"
+    effects:
+      - random:
+          name: Random Effect With Custom Values
+          transition_length: 5s
+          update_interval: 7s
+      - strobe:
+          name: Strobe Effect With Custom Values
+          colors:
+            - state: true
+              brightness: 100%
+              red: 100%
+              green: 90%
+              blue: 0%
+              duration: 500ms
+            - state: false
+              duration: 250ms
+            - state: true
+              brightness: 100%
+              red: 0%
+              green: 100%
+              blue: 0%
+              duration: 500ms
+      - flicker:
+          name: Flicker Effect With Custom Values
+          alpha: 95%
+          intensity: 1.5%
+      - addressable_rainbow:
+          name: Rainbow Effect With Custom Values
+          speed: 10
+          width: 50
+      - addressable_color_wipe:
+          name: Color Wipe Effect With Custom Values
+          colors:
+            - red: 100%
+              green: 100%
+              blue: 100%
+              num_leds: 1
+            - red: 0%
+              green: 0%
+              blue: 0%
+              num_leds: 1
+          add_led_interval: 100ms
+          reverse: false
+      - addressable_scan:
+          name: Scan Effect With Custom Values
+          move_interval: 100ms
+          scan_width: 1
+      - addressable_twinkle:
+          name: Twinkle Effect With Custom Values
+          twinkle_probability: 5%
+          progress_interval: 4ms
+      - addressable_random_twinkle:
+          name: Random Twinkle Effect With Custom Values
+          twinkle_probability: 5%
+          progress_interval: 32ms
+
+
+
+

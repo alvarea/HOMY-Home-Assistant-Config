@@ -1,0 +1,33 @@
+{
+  "storage_version": 1,
+  "name": "esphome_pow_sw1",
+  "comment": null,
+  "esphome_version": "2022.8.0",
+  "src_version": 1,
+  "address": "192.168.0.36",
+  "web_port": null,
+  "esp_platform": "ESP8266",
+  "build_path": "/config/esphome/.esphome/build/esphome_pow_sw1",
+  "firmware_bin_path": "/data/esphome_pow_sw1/.pioenvs/esphome_pow_sw1/firmware.bin",
+  "loaded_integrations": [
+    "api",
+    "binary_sensor",
+    "esp8266",
+    "esp8266_pwm",
+    "esphome",
+    "gpio",
+    "light",
+    "logger",
+    "md5",
+    "mdns",
+    "monochromatic",
+    "network",
+    "ota",
+    "output",
+    "preferences",
+    "socket",
+    "status",
+    "switch",
+    "wifi"
+  ]
+}

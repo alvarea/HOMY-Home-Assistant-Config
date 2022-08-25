@@ -1,0 +1,30 @@
+{
+  "storage_version": 1,
+  "name": "esphome_bas_sw1",
+  "comment": null,
+  "esphome_version": "1.16.2",
+  "src_version": 1,
+  "arduino_version": "espressif8266@2.6.2",
+  "address": "192.168.0.31",
+  "esp_platform": "ESP8266",
+  "board": "esp01_1m",
+  "build_path": "/config/esphome/esphome_bas_sw1",
+  "firmware_bin_path": "/data/esphome_bas_sw1/.pioenvs/esphome_bas_sw1/firmware.bin",
+  "loaded_integrations": [
+    "api",
+    "async_tcp",
+    "binary_sensor",
+    "esp8266_pwm",
+    "esphome",
+    "gpio",
+    "light",
+    "logger",
+    "monochromatic",
+    "network",
+    "ota",
+    "output",
+    "status",
+    "switch",
+    "wifi"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "storage_version": 1,
+  "name": "esphome_lb1_l01",
+  "comment": null,
+  "esphome_version": "2022.8.0",
+  "src_version": 1,
+  "address": "192.168.0.45",
+  "web_port": null,
+  "esp_platform": "ESP8266",
+  "build_path": "/config/esphome/.esphome/build/esphome_lb1_l01",
+  "firmware_bin_path": "/data/esphome_lb1_l01/.pioenvs/esphome_lb1_l01/firmware.bin",
+  "loaded_integrations": [
+    "api",
+    "esp8266",
+    "esphome",
+    "light",
+    "md5",
+    "mdns",
+    "my9231",
+    "network",
+    "ota",
+    "output",
+    "preferences",
+    "rgbww",
+    "socket",
+    "wifi"
+  ]
+}
