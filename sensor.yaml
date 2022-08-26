@@ -987,3 +987,14 @@
       aemet_min_viento_3d:
         friendly_name: "Viento Pasado Mañana "
         value_template: "{{ state_attr('weather.aemet_daily','forecast').3.wind_speed }}"
+
+      estudio_persiana_mode:
+        friendly_name: Persiana Estudio Modo 
+        value_template: >-
+          {% if is_state('input_boolean.estudio_persiana_mode_up','on') %} Subir
+          {% else %} Bajar
+          {% endif %}
+        icon_template: >-
+          {% if is_state('input_boolean.estudio_persiana_mode_up','on') %} window-shutter-alert
+          {% else %} window-shutter
+          {% endif %}
