@@ -69,7 +69,7 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 127.0.0.1
-  ip_ban_enabled: false
+  ip_ban_enabled: true
   login_attempts_threshold: 500
 
 # Checks for available updates
@@ -624,12 +624,21 @@ cover:
         device_class: shutter
         friendly_name: "Persiana Estudio"
         #value_template: "{{is_state('cover.tapparelle_studio', 'open')}}"
+        position_template: "{{ state_attr('cover.estudio_persiana', 'current_position') }}"
+        set_cover_position:
+          service: cover.set_cover_position 
+          target:
+            entity_id: cover.estudio_persiana
+          data:
+            position: "{{ position }}"
         open_cover:
           service: script.estudio_persiana_up_full
         close_cover:
           service: script.estudio_persiana_down_full
         stop_cover:
           service: script.estudio_persiana_stop
+
+
 
 # Sensores Xiaomi BLE Temperatura, utilizando el componente custom HACS: ble_monitor ==> DEPRECATED
 # Paso a componente ESPHOME_ESP32_Hub2_BLE

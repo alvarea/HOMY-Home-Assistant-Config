@@ -1564,30 +1564,30 @@
     - service: switch.turn_on
       entity_id: switch.esphome_s20_sw3
 
-- id: S10c
-  alias: 'S10c Switch Dormitorio AAF On'
-  trigger:
-    - platform: sun
-      # offset: "+03:30:00"   # Horario Invierno GMT+1  => 18:30 + 3:30 = 22:00
-      # offset: "+00:30:00"   # Horario Verano GMT+2  => 21:30 + 0:30 = 22:00
-      event: sunset
-      offset: "+00:30:00"
-  condition:
-    condition: and
-    conditions:
-      # Hay alguien en casa
-      - condition: state
-        entity_id: input_boolean.calefac_programador_aaf
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.family_sleep_home_aaf
-        state: 'on'
-      - condition: state
-        entity_id: binary_sensor.family_any_home
-        state: 'on'
-  action:
-    - service: switch.turn_on
-      entity_id: switch.sonoff_s20_sw2
+#- id: S10c
+#  alias: 'S10c Switch Dormitorio AAF On'
+#  trigger:
+#    - platform: sun
+#      # offset: "+03:30:00"   # Horario Invierno GMT+1  => 18:30 + 3:30 = 22:00
+#      # offset: "+00:30:00"   # Horario Verano GMT+2  => 21:30 + 0:30 = 22:00
+#      event: sunset
+#      offset: "+00:30:00"
+#  condition:
+#    condition: and
+#    conditions:
+#      # Hay alguien en casa
+#      - condition: state
+#        entity_id: input_boolean.calefac_programador_aaf
+#        state: 'on'
+#      - condition: state
+#        entity_id: input_boolean.family_sleep_home_aaf
+#        state: 'on'
+#      - condition: state
+#        entity_id: binary_sensor.family_any_home
+#        state: 'on'
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.sonoff_S26_sw1
 
 - id: S12
   alias: 'S12 Switch Dormitorios Off'
@@ -1605,16 +1605,16 @@
       - condition: state
         entity_id: switch.esphome_s20_sw3
         state: 'on'
-      - condition: state
-        entity_id: switch.sonoff_s20_sw2
-        state: 'on'
+      #- condition: state
+      #  entity_id: switch.sonoff_S26_sw1
+      #  state: 'on'
   action:
     - service: switch.turn_off
       entity_id: switch.esphome_s20_sw1
     - service: switch.turn_off
       entity_id: switch.esphome_s20_sw3
-    - service: switch.turn_off
-      entity_id: switch.sonoff_s20_sw2
+    #- service: switch.turn_off
+    #  entity_id: switch.sonoff_S26_sw1
 
 #
 # SAI RACK COMUNICACIONES

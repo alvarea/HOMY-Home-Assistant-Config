@@ -11,10 +11,12 @@ __pycache__
 # Directory (contents) ignores
 .cloud
 .storage
+android
+custom_components
 deps
-image/
-tts/
-www/
+image
+tts
+www
 
 # Specific file ignores
 core
@@ -22,17 +24,13 @@ image
 ip_bans.yaml
 secrets.yaml
 /esphome/secrets.yaml
+phue.conf
 
 # Build-in blueprints ignores
 blueprints/*/homeassistant
 
 # ESPHome ignores
 esphome/.*/
-
-# Ignore add-on files
-aircast.xml
-airsonos.xml
-notebooks
 
 # Ignore files created by IDE's
 .vscode

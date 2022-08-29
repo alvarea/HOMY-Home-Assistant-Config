@@ -544,11 +544,11 @@
           {% endif %}
         icon_template: mdi:flash-outline
       # AAC
-      riego_bomba_pozo_warning_consumo:
+      riego_bomba_pozo_warning_motor_off:
         value_template: >-
           {% if (is_state('binary_sensor.riego_cesped_ch1_status','on') or
-                 is_state('binary_sensor.riego_cesped_ch1_status','on') or
-                 is_state('binary_sensor.riego_cesped_ch1_status','on')
+                 is_state('binary_sensor.riego_cesped_ch2_status','on') or
+                 is_state('binary_sensor.riego_cesped_ch3_status','on')
                 ) and states('sensor.esphome_pow_sw3_power')|round(1) < 100
           %}
             true
@@ -557,7 +557,7 @@
           {% endif %}
         icon_template: mdi:flash-alert
 
-      riego_bomba_pozo_warning_motor_off:
+      riego_bomba_pozo_warning_consumo:
         value_template: >-
           {%  if states('sensor.esphome_pow_sw3_voltage')|int(0) > 200
               and states('sensor.esphome_pow_sw3_power')|round(1) > 1800

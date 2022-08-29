@@ -3,7 +3,6 @@
 # Select Número Personas Duermen en Casa
   family_sleep_home:
     name: Duermen en Casa
-    initial: '4'
     mode: slider
     min: 1
     max: 4
