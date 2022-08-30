@@ -198,8 +198,8 @@ void setup() {
   //       open_drain: false
   //       pullup: false
   //       pulldown: false
-  //     id: esphome_esp8266_esp8266gpiopin_2
   //     inverted: false
+  //     id: esphome_esp8266_esp8266gpiopin_2
   //   disabled_by_default: false
   //   id: gpio_gpioswitch
   //   restore_mode: RESTORE_DEFAULT_OFF
