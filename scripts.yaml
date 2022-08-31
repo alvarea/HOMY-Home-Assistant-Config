@@ -990,10 +990,9 @@ luces_dormitorio_lectura:
   alias: 'Luces Dormitorio Lectura'
   sequence:
     # El nombre de la escena es case sensitive
-    - service: hue.hue_activate_scene
-      data:
-        group_name: "Dormitorio"
-        scene_name: "Lectura"
+    - service: scene.turn_on
+      target:
+        entity_id: scene.dormitorio_lectura
 
 luces_dormitorio_relax:
   alias: 'Luces Dormitorio Relax'
@@ -1631,7 +1630,6 @@ blink_trigger_cam_porche:
         entity_id: camera.blink_porche
         filename: /share/blink_porche.jpg
 
-
 #-----------------------------------------------------------------------------#
 #                                                                             #
 # CONTROL PERSIANAS MATISMO                                                   #
@@ -1643,90 +1641,90 @@ estudio_persiana_stop:
   sequence:
     - service: switch.turn_off
       entity_id: 
-        - switch.sonoff_mini_sw2
-        - switch.sonoff_mini_sw5
+        - switch.esphome_dual_sw1_relay_1
+        - switch.esphome_dual_sw1_relay_2
 
 estudio_persiana_down:
   alias: 'Estudio Persiana Down'
   sequence:
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
     - service: switch.turn_on
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
 
 estudio_persiana_up:
   alias: 'Estudio Persiana Up'
   sequence:
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
     - service: switch.turn_on
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
 
 estudio_persiana_down_full:
   alias: 'Estudio Persiana Down 20s'
   sequence:
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
     - service: switch.turn_on
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
     - delay: 00:00:20
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
 
 estudio_persiana_up_full:
   alias: 'Estudio Persiana Up 20'
   sequence:
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
     - service: switch.turn_on
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
     - delay: 00:00:20
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
 
 estudio_persiana_down_3s:
   alias: 'Estudio Persiana Down 3s'
   sequence:
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
     - service: switch.turn_on
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
     - delay: 00:00:03
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
 
 estudio_persiana_up_3s:
   alias: 'Estudio Persiana Up 3s'
   sequence:
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
     - service: switch.turn_on
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
     - delay: 00:00:03
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
 
 estudio_persiana_down_1s:
   alias: 'Estudio Persiana Down 1s'
   sequence:
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
     - service: switch.turn_on
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
     - delay: 00:00:01
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
 
 estudio_persiana_up_1s:
   alias: 'Estudio Persiana Up 1s'
   sequence:
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: switch.esphome_dual_sw1_relay_2
     - service: switch.turn_on
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
     - delay: 00:00:01
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: siwtch.esphome_dual_sw1_relay_1
 
 estudio_persiana_start_stop:
   alias: 'Estudio Persiana Start-Stop'
