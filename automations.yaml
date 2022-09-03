@@ -2695,29 +2695,22 @@
 #-----------------------------------------------------------------------------#
 # Control duracion maxima 25SEG, ya que el tiempo total del recorrido 18'
 #
-- id: P01_sonof_mini_sw2_for_1m
-  alias: 'P01 sonof mini sw2 1m'
+- id: P01_estudio_persiana_fin_carrera_motor
+  alias: 'P01 estudio persiana fin carrera motor'
   trigger:
     - platform: state
-      entity_id: switch.sonoff_mini_sw2
+      entity_id: switch.esphome_dual_sw1_relay_1
+      from: 'off'
+      to: 'on'
+      for: '00:00:25'
+    - platform: state
+      entity_id: switch.esphome_dual_sw1_relay_2
       from: 'off'
       to: 'on'
       for: '00:00:25'
   action:
-    # SW2 SUBIR PERSINANA
+    # PARA MOTOR PERSINANA
     - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw2
-
-
-- id: P02_sonof_mini_sw5_for_1m
-  alias: 'P02 sonof mini sw5 1m'
-  trigger:
-    - platform: state
-      entity_id: switch.sonoff_mini_sw5
-      from: 'off'
-      to: 'on'
-      for: '00:00:25'
-  action:
-    # SW5 BAJAR PERSINANA
-    - service: switch.turn_off
-      entity_id: switch.sonoff_mini_sw5
+      entity_id: 
+        - switch.esphome_dual_sw1_relay_1
+        - switch.esphome_dual_sw1_relay_2

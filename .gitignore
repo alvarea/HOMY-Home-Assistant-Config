@@ -25,12 +25,13 @@ ip_bans.yaml
 secrets.yaml
 /esphome/secrets.yaml
 phue.conf
+scratch.exclude
 
 # Build-in blueprints ignores
 blueprints/*/homeassistant
 
 # ESPHome ignores
-esphome/.*/
+esphome/.*
 
 # Ignore files created by IDE's
 .vscode

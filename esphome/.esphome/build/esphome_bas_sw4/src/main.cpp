@@ -84,7 +84,7 @@ void setup() {
   //   fast_connect: false
   //   output_power: 20.0
   //   networks:
-  //   - ssid: !secret 'wifi_ssid_wlan'
+  //   - ssid: !secret 'wifi_ssid_tc'
   //     password: !secret 'wifi_pwd'
   //     id: wifi_wifiap
   //     priority: 0.0
@@ -92,7 +92,7 @@ void setup() {
   wifi_wificomponent = new wifi::WiFiComponent();
   wifi_wificomponent->set_use_address("192.168.0.34");
   wifi::WiFiAP wifi_wifiap = wifi::WiFiAP();
-  wifi_wifiap.set_ssid("WLAN.alvarea.net");
+  wifi_wifiap.set_ssid("TC.alvarea.net");
   wifi_wifiap.set_password("3286202581200");
   wifi_wifiap.set_manual_ip(wifi::ManualIP{
       .static_ip = network::IPAddress(192, 168, 0, 34),

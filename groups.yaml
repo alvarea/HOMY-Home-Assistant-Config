@@ -33,12 +33,15 @@ alarma_sensores_perimetro_grp:
 
 alarma_sensores_presencia_interior_grp:
   name: Grupo Sensores Presencia Interior
+  # Binary sensors Z calculados como sensor_movimiento_X = on AND input_boleean_X = on
+  # Permite desactivar sensores de movimiento.
   entities:
     - binary_sensor.blink_hall_motion_detected
     - binary_sensor.alarma_sensor_presencia_salon
     - binary_sensor.alarma_sensor_presencia_estudio
     - binary_sensor.alarma_sensor_presencia_entrada_hall
     - binary_sensor.alarma_sensor_presencia_dormitorio_principal
+    - binary_sensor.alarma_sensor_presencia_pasillo
 
 alarma_sensores_presencia_exterior_grp:
   name: Grupo Sensores Presencia Exterior
@@ -59,17 +62,10 @@ alarma_sensores_luz_grp:
     - sensor.illumination_158d0001e05661
 
 luces_estudio_grp:
-  name: Grupo Luces Estudio
+  name: Grupo Luces Estudio Non-Hue
   entities:
-    - light.luz_estudio_alta                                # Hue Estudio
-    - light.luz_estudio_media                               # Hue Estudio
-    - light.luz_estudio_baja                                # Hue Estudio
-    - light.luz_estudio_techo                               # Hue Estudio
-    - light.luz_estudio_izquierda                           # Hue Estudio
-    - light.luz_estudio_centro                              # Hue Estudio
-    - light.luz_escalera
-    - light.esphome_lb1_l01                                 # Lampara Repisa Escalera
-    - light.sonoff_mini_sw2                                 # Luz Escritorio
+    - light.sonoff_mini_sw3             # Luz Cuadro Beer
+    - light.sonoff_mini_sw4             # Luz Lamparita
 
 luces_entrada_grp:
   name: Grupo Luces Entrada
@@ -90,6 +86,7 @@ luces_planta_baja_grp:
 luces_planta_alta_grp:
   name: Grupo Luces Planta Alta
   entities:
+    - light.estudio
     - group.luces_estudio_grp
 
 luces_interior_grp:

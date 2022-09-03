@@ -1,144 +1,50 @@
-- id: '1598824815690'
-  name: Salón Fuerte
+- id: Z_Estudio Work Sunrise
+  name: Estudio Work Sunrise (Z)
   entities:
-    light.luz_cilindro:
-      brightness: 30
-      effect: none
-      effect_list:
-      - colorloop
-      - random
-      friendly_name: Luz Cilindro
-      hs_color:
-      - 252.333
-      - 70.588
-      icon: mdi:lava-lamp
-      max_mireds: 500
-      min_mireds: 153
-      rgb_color:
-      - 111
-      - 75
-      - 255
+    light.esphome_bas_sw3_led:
+      supported_color_modes:
+      - brightness
+      friendly_name: esphome bas sw3 led
+      supported_features: 40
+      state: 'off'
+    switch.esphome_bas_sw3:
+      icon: mdi:desk
+      friendly_name: BAS.SW3 Regleta Desk Setup
       state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.198
-      - 0.099
-    light.luz_lectura:
-      brightness: 30
-      effect: none
-      effect_list:
-      - colorloop
-      - random
-      friendly_name: Luz Lectura
-      hs_color:
-      - 31
-      - 70.588
-      icon: mdi:floor-lamp
-      max_mireds: 500
-      min_mireds: 153
-      rgb_color:
-      - 255
-      - 168
-      - 75
+    media_player.echo_alexa_estudio:
+      source_list:
+      - Local Speaker
+      - iPhone-AAC
+      volume_level: 0.22
+      is_volume_muted: false
+      media_content_type: standby
+      media_position_updated_at: '2022-09-03T08:42:51.048268+00:00'
+      source: Local Speaker
+      available: true
+      last_called: true
+      last_called_timestamp: 1662142905775
+      last_called_summary: alexa enciende estudio
+      connected_bluetooth:
+      bluetooth_list:
+      - iPhone-AAC
+      friendly_name: Echo Alexa Estudio
+      supported_features: 56253
+      state: standby
+    cover.estudio_persiana:
+      device_class: shutter
+      friendly_name: Persiana Estudio
+      supported_features: 15
+      state: open
+    scene.estudio_desk_high:
+      group_name: Estudio
+      group_type: room
+      name: Desk_High
+      speed: 0.6031746031746031
+      brightness: 42.91
+      is_dynamic: false
+      friendly_name: Estudio Desk_High
       state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.532
-      - 0.397
-    light.luz_tv:
-      brightness: 30
-      effect: none
-      effect_list:
-      - colorloop
-      - random
-      friendly_name: Luz LED TV
-      hs_color:
-      - 31.16
-      - 70.98
-      icon: mdi:led-strip
-      max_mireds: 500
-      min_mireds: 153
-      rgb_color:
-      - 255
-      - 167
-      - 74
-      state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.534
-      - 0.396
-    light.luz_vitrina:
-      brightness: 31
-      effect: none
-      effect_list:
-      - colorloop
-      - random
-      friendly_name: Luz Vitrina
-      hs_color:
-      - 49.645
-      - 77.255
-      icon: mdi:lamp
-      max_mireds: 500
-      min_mireds: 153
-      rgb_color:
-      - 255
-      - 221
-      - 57
-      state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.476
-      - 0.468
-  icon: mdi:brightness-6
-- id: '1598824928531'
-  name: Salon Fuerte
-  entities:
-    light.luz_cilindro:
-      brightness: 30
-      effect: none
-      effect_list:
-      - colorloop
-      - random
-      friendly_name: Luz Cilindro
-      hs_color:
-      - 252
-      - 68.627
-      icon: mdi:lava-lamp
-      max_mireds: 500
-      min_mireds: 153
-      rgb_color:
-      - 115
-      - 80
-      - 255
-      state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.202
-      - 0.105
-  icon: mdi:brightness-6
-- id: '1598995722020'
-  name: Salón Fuerte
-  entities:
-    light.luz_vitrina:
-      brightness: 31
-      effect: none
-      effect_list:
-      - colorloop
-      - random
-      friendly_name: Luz Vitrina
-      hs_color:
-      - 49.697
-      - 77.647
-      icon: mdi:lamp
-      max_mireds: 500
-      min_mireds: 153
-      rgb_color:
-      - 255
-      - 221
-      - 57
-      state: 'on'
-      supported_features: 63
-      xy_color:
-      - 0.476
-      - 0.468
-  icon: mdi:lightbulb-group-outline
+  icon: mdi:weather-sunset-up
+  metadata:
+    scene.estudio_desk_high:
+      entity_only: true

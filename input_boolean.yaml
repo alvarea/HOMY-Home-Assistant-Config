@@ -55,6 +55,9 @@
   alarma_sensor_presencia_dormitorio_principal:
     name: Sensor Presencia Dormitorio Principal
     icon: mdi:motion-sensor
+  alarma_sensor_presencia_pasillo:
+    name: Sensor Presencia Pasillo
+    icon: mdi:motion-sensor
 
 #
 # ON/OFF DUERME EN CASA

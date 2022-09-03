@@ -294,6 +294,20 @@
           {% else %} mdi:motion-sensor-off
           {% endif %}
 
+      alarma_sensor_presencia_pasillo:
+        value_template: >-
+          {%  if is_state('input_boolean.alarma_sensor_presencia_pasillo','on')
+              and is_state('binary_sensor.hue_sensor_pasillo_motion','on')
+          %}
+            true
+          {% else %}
+            false
+          {% endif %}
+        icon_template: >-
+          {% if is_state('binary_sensor.alarma_sensor_presencia_pasillo','on') %} mdi:motion-sensor
+          {% else %} mdi:motion-sensor-off
+          {% endif %}
+
       #
       # CONTROL LAVADORA
       #
@@ -1402,13 +1416,13 @@
       estudio_persiana_motor_up:
         friendly_name: 'Persiana Subiendo (SW2)'
         value_template: >-
-          {% if is_state('switch.sonoff_mini_sw2','on') %}
+          {% if is_state('switch.esphome_dual_sw1_relay_1','on') %}
             true
           {% else %}
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('switch.sonoff_mini_sw2','on') %}
+          {% if is_state('switch.esphome_dual_sw1_relay_1','on') %}
             mdi:window-shutter-settings
           {% else %}
             mdi:window-shutter-open
@@ -1417,13 +1431,13 @@
       estudio_persiana_motor_down:
         friendly_name: 'Persiana Bajando (SW5)'
         value_template: >-
-          {% if is_state('switch.sonoff_mini_sw5','on') %}
+          {% if is_state('switch.esphome_dual_sw1_relay_2','on') %}
             true
           {% else %}
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('switch.sonoff_mini_sw5','on') %}
+          {% if is_state('switch.esphome_dual_sw1_relay_2','on') %}
             mdi:window-shutter-settings
           {% else %}
             mdi:window-shutter
@@ -1432,13 +1446,13 @@
       estudio_persiana_motor_en_marcha:
         friendly_name: 'Persiana Motor en Marcha'
         value_template: >-
-          {% if is_state('switch.sonoff_mini_sw2','on') or is_state('switch.sonoff_mini_sw5','on') %}
+          {% if is_state('switch.esphome_dual_sw1_relay_1','on') or is_state('switch.esphome_dual_sw1_relay_2','on') %}
             true
           {% else %}
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('switch.sonoff_mini_sw2','on') or is_state('switch.sonoff_mini_sw5','on') %}
+          {% if is_state('switch.esphome_dual_sw1_relay_1','on') or is_state('switch.esphome_dual_sw1_relay_2','on') %}
             mdi:window-shutter-settings
           {% else %}
             mdi:window-shutter
