@@ -565,17 +565,17 @@ sonoff:
       device_class: light
       name: Sonoff Mini SW1
 
-    # 052 Alvarea.net SONOFF Mini SW2 PERSIANA ESTUDIO UP
+    # 052 Alvarea.net SONOFF Mini SW2 Luces Jardín
     1000b5aa49:
-      device_class: switch
+      device_class: light
       name: Sonoff Mini SW2
 
-    # 053 Alvarea.net SONOFF Mini SW3 Cuadro Beer
+    # 053 Alvarea.net SONOFF Mini SW3 Estudio Cuadro Beer
     1001057e5c:
       device_class: light
       name: Sonoff Mini SW3
 
-    # 054 Alvarea.net SONOFF Mini SW4
+    # 054 Alvarea.net SONOFF Mini SW4 Estudio Lamparita 
     100104fe64:
       device_class: light
       name: Sonoff Mini SW4
@@ -585,9 +585,10 @@ sonoff:
       device_class: switch
       name: Sonoff Mini SW5
 
-    # 056 Alvarea.net SONOFF S20 SW2
-    10011a769f:
-      name: Switch S20 SW2
+    # 056 Alvarea.net SONOFF Mini SW6
+    100152b44c:
+      device_class: switch
+      name: Sonoff Mini SW6
 
 # iCloud Calendar Integration - CALDAV
 calendar:

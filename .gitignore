@@ -31,7 +31,7 @@ blueprints/*/homeassistant
 
 # ESPHome ignores
 esphome/.*
+esphome/.esphome
 
 # Ignore files created by IDE's
 .vscode
-scratch.exclude

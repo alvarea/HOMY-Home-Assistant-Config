@@ -103,7 +103,7 @@ luces_jardin_grp:
     - light.focos_olivo_piscina         # Foco Olivo Piscina (switch.esphome_4ch_relay_2)
     - light.foco_olivo_nubes            # Foco Olivo Nubes (switch.esphome_4ch_relay_3)
     - light.foco_entrada_bonsai         # Foco Entrada Bonsai (switch.esphome_4ch_relay_4)
-    - light.luces_porche_salon          # Porche Salón (switch.esphome_bas_sw4)
+    - light.sonoff_mini_sw2             # Porche Salón 
 
 luces_casa_grp:
   name: Luces De Toda La Casa

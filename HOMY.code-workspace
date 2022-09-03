@@ -15,7 +15,8 @@
 			"**/CVS": true,
 			"**/.DS_Store": true,
 			"**/Thumbs.db": true,
-			"*.db": true
+			"*.db": true,
+			"*.db.corrupt*": true
 		},
 		"explorerExclude.backup": {}
 	}
