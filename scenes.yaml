@@ -48,3 +48,19 @@
   metadata:
     scene.estudio_desk_high:
       entity_only: true
+- id: '1662220604194'
+  name: Estudio Home Cinema (Z)
+  entities:
+    scene.estudio_azul:
+      group_name: Estudio
+      group_type: room
+      name: Azul
+      speed: 0.5
+      brightness: 38.58
+      is_dynamic: true
+      friendly_name: Estudio Azul
+      state: 'on'
+  icon: mdi:dolby
+  metadata:
+    scene.estudio_azul:
+      entity_only: true

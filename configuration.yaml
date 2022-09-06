@@ -15,6 +15,10 @@ homeassistant:
   allowlist_external_dirs:
     - '/share'
   legacy_templates: true
+  # Media content
+  media_dirs:
+    local: /media
+#
 #  auth_providers:
 #    - type: homeassistant
 #    - type: trusted_networks

@@ -1124,19 +1124,19 @@ piscina_depuradora_ch0_timer_start:
     - service: timer.start
       data_template:
         entity_id: timer.piscina_depuradora_ch0
-        duration: '{{ states.sensor.piscina_manual_segundos.state}}'
+        duration: '{{ states.sensor.piscina_depuradora_ch0_manual_segundos.state}}'
     - service: switch.turn_on
       entity_id: switch.esphome_pow_sw3
     # Actualiza Valor Hora Arranque Real
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.piscina_real_start_time
-      data_template:
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S")) }}'
+    #- service: input_datetime.set_datetime
+    #  entity_id: input_datetime.piscina_real_start_time
+    #  data_template:
+    #    time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S")) }}'
     # Actualiza Valor Duración Programa Activo
-    - service: input_text.set_value
-      entity_id: input_text.piscina_duracion_programa
-      data_template:
-        value: '{{ states.sensor.piscina_duracion_manual.state}}'
+    #- service: input_text.set_value
+    #  entity_id: input_text.piscina_duracion_programa
+    #  data_template:
+    #    value: '{{ states.sensor.piscina_duracion_manual.state}}'
 
 piscina_depuradora_ch0_timer_start_diario:
   alias: Timer Piscina Start
@@ -1148,15 +1148,15 @@ piscina_depuradora_ch0_timer_start_diario:
     - service: switch.turn_on
       entity_id: switch.esphome_pow_sw3
     # Actualiza Valor Hora Arranque Real
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.piscina_real_start_time
-      data_template:
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S")) }}'
+    #- service: input_datetime.set_datetime
+    #  entity_id: input_datetime.piscina_real_start_time
+    #  data_template:
+    #    time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S")) }}'
     # Actualiza Valor Duración Programa Activo
-    - service: input_text.set_value
-      entity_id: input_text.piscina_duracion_programa
-      data_template:
-        value: '{{ states.sensor.piscina_duracion_planificada.state}}'
+    #- service: input_text.set_value
+    #  entity_id: input_text.piscina_duracion_programa
+    #  data_template:
+    #    value: '{{ states.sensor.piscina_duracion_planificada.state}}'
 
 piscina_depuradora_ch0_timer_cancel:
   alias: Timer Piscina Cancel
@@ -1166,15 +1166,15 @@ piscina_depuradora_ch0_timer_cancel:
     - service: switch.turn_off
       entity_id: switch.esphome_pow_sw3
     # Actualiza Valor Hora Arranque Real
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.piscina_real_end_time
-      data_template:
-        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S")) }}'
+    #- service: input_datetime.set_datetime
+    #  entity_id: input_datetime.piscina_real_end_time
+    #  data_template:
+    #    time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S")) }}'
     # Actualiza Valor Duración Programa Activo
-    - service: input_text.set_value
-      entity_id: input_text.piscina_depuradora_ch0_duracion_programa
-      data_template:
-        value: ''
+    #- service: input_text.set_value
+    #  entity_id: input_text.piscina_depuradora_ch0_duracion_programa
+    #  data_template:
+    #    value: ''
 
 piscina_depuradora_ch0_timer_pause:
   alias: Timer Piscina Pause
@@ -1597,7 +1597,7 @@ estudio_persiana_up_1s:
       entity_id: switch.esphome_dual_sw1_relay_1
     - delay: 00:00:01
     - service: switch.turn_off
-      entity_id: siwtch.esphome_dual_sw1_relay_1
+      entity_id: switch.esphome_dual_sw1_relay_1
 
 estudio_persiana_start_stop:
   alias: 'Estudio Persiana Start-Stop'

@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.yaml": "home-assistant"
+		},
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/home-assistant_v2.db": true,
+			"*.db": true,
+			"home-assistant_v2.db": true,
+			"**/*.db*": true
+		},
+		"explorerExclude.backup": {}
+	}
+}

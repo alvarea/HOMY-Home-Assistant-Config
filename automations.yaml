@@ -1139,8 +1139,8 @@
 # free_fall:    ESTUDIO LIGHT ESCENA AZUL
 # flip_90:      ESTUDIO LIGHT ESCENA DESK
 # flip_180:     ESTUDIO LIGHT ESCENA DESK HIGH
-# tap_twice:    ESTUDIO PERSIANA ON 3s
-# ROTATE:        ESTUDIO PERSIANA CAMBIO MODO UP/DOWN
+# tap_twice:    ESTUDIO PERSIANA ON 3s => CANCELADO
+# ROTATE:       ESTUDIO PERSIANA CAMBIO MODO UP/DOWN
 #
 - id: L12
   alias: 'L12 Cube FreeFall Light Estudio Azul'
@@ -1168,7 +1168,8 @@
       entity_id: binary_sensor.cube_158d00024a4a62
       action_type: shake_air
   action:
-    - service: script.luces_estudio_off
+    - service: light.turn_off
+      entity_id: light.estudio
 
 - id: L14
   alias: 'L14 Cube Flip90 Light Estudio Desk Soft'
@@ -1202,17 +1203,17 @@
         group_name: "Estudio"
         scene_name: "Desk_High"
 
-- id: L16
-  alias: 'L16 Cube TapTwice Estudio Persiana On-Off'
-  mode: restart
-  trigger:
-    platform: event
-    event_type: xiaomi_aqara.cube_action
-    event_data:
-      entity_id: binary_sensor.cube_158d00024a4a62
-      action_type: tap_twice
-  action:
-    - service: script.estudio_persiana_start_stop
+#- id: L16
+# alias: 'L16 Cube TapTwice Estudio Persiana On-Off'
+#  mode: restart
+#  trigger:
+#    platform: event
+#    event_type: xiaomi_aqara.cube_action
+#    event_data:
+#      entity_id: binary_sensor.cube_158d00024a4a62
+#      action_type: tap_twice
+#  action:
+#    - service: script.estudio_persiana_start_stop
 
 - id: L17
   alias: 'L17 Cube TapTwice Estudio Persiana Mode'
