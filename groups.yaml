@@ -64,8 +64,8 @@ alarma_sensores_luz_grp:
 luces_estudio_grp:
   name: Grupo Luces Estudio Non-Hue
   entities:
-    - light.sonoff_mini_sw3             # Luz Cuadro Beer
-    - light.sonoff_mini_sw4             # Luz Lamparita
+    - light.estudio_beer           # Luz Cuadro Beer
+    - light.estudio_lamparita      # Luz Lamparita
 
 luces_entrada_grp:
   name: Grupo Luces Entrada
@@ -98,12 +98,12 @@ luces_interior_grp:
 luces_jardin_grp:
   name: Grupo Luces Jardín
   entities:
-    - light.sonoff_mini_sw1             # Luces Exterior (MINI_SW1)
+    - light.faroles_exterior            # Luces Exterior (MINI_SW1)
     - light.balizas_cesped              # Balizas Cesped  (switch.esphome_4ch_relay_1)
     - light.focos_olivo_piscina         # Foco Olivo Piscina (switch.esphome_4ch_relay_2)
     - light.foco_olivo_nubes            # Foco Olivo Nubes (switch.esphome_4ch_relay_3)
     - light.foco_entrada_bonsai         # Foco Entrada Bonsai (switch.esphome_4ch_relay_4)
-    - light.sonoff_mini_sw2             # Porche Salón 
+    - light.porche_jardin               # Porche Salón (MINI_SW2)
 
 luces_casa_grp:
   name: Luces De Toda La Casa

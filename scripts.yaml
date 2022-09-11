@@ -1055,7 +1055,7 @@ luces_jardin_check_xia_ext:
     entity_id: input_boolean.jardin_programador_xia_ext
     state: 'on'
   - service: light.turn_on
-    entity_id: light.sonoff_mini_sw1
+    entity_id: light.faroles_exterior
 
 luces_jardin_check_bas_sw2:
   alias: 'Luces On Sonoff BAS SW2'

@@ -942,17 +942,17 @@
         entity_id: sun.sun
         state: 'below_horizon'
       - condition: state
-        entity_id: light.sonoff_mini_sw1
+        entity_id: light.faroles_exterior
         state: 'off'
       - condition: numeric_state
         entity_id: sensor.illumination_158d0001e637f6
         below: 10
   action:
     - service: light.turn_on
-      entity_id: light.sonoff_mini_sw1
+      entity_id: light.faroles_exterior
     - delay: '00:05:00'
     - service: light.turn_off
-      entity_id: light.sonoff_mini_sw1
+      entity_id: light.faroles_exterior
 
 - id: L06
   alias: 'L06 Luces Off Before Sunrise'
@@ -1129,6 +1129,31 @@
         entity_id: scene.estudio_hall
       data:
         transition: 3
+
+- id: L11
+  alias: 'L11 Luces On Armario Estudio Sensor'
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d000201dddb
+  action:
+    - choose:
+      # IF puerta cerrada => apaga Luz siempre
+      - conditions:
+        - condition: state
+          entity_id: binary_sensor.door_window_sensor_158d000201dddb
+          state: 'off' # CERRADO
+        sequence:
+          - service: light.turn_off
+            entity_id: 
+              - light.estudio_armario
+              - light.esphome_s26_sw1_led
+      #ELSE puerta abierta
+      default:
+        - service: light.turn_on
+          entity_id: 
+            - light.estudio_armario
+            - light.esphome_s26_sw1_led
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
