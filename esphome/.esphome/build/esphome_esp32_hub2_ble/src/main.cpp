@@ -20,7 +20,6 @@ atc_mithermometer::ATCMiThermometer *atc_mithermometer_atcmithermometer;
 sensor::Sensor *sensor_sensor;
 sensor::Sensor *sensor_sensor_2;
 sensor::Sensor *sensor_sensor_3;
-sensor::Sensor *sensor_sensor_4;
 #define yield() esphome::yield()
 #define millis() esphome::millis()
 #define micros() esphome::micros()
@@ -192,16 +191,6 @@ void setup() {
   //     device_class: battery
   //     state_class: measurement
   //     entity_category: diagnostic
-  //   battery_voltage:
-  //     name: LY1 Desk_Setup Batería (V)
-  //     disabled_by_default: false
-  //     id: sensor_sensor_4
-  //     force_update: false
-  //     unit_of_measurement: V
-  //     accuracy_decimals: 3
-  //     device_class: voltage
-  //     state_class: measurement
-  //     entity_category: diagnostic
   //   id: atc_mithermometer_atcmithermometer
   //   esp32_ble_id: esp32_ble_tracker_esp32bletracker
   atc_mithermometer_atcmithermometer = new atc_mithermometer::ATCMiThermometer();
@@ -240,17 +229,6 @@ void setup() {
   sensor_sensor_3->set_accuracy_decimals(0);
   sensor_sensor_3->set_force_update(false);
   atc_mithermometer_atcmithermometer->set_battery_level(sensor_sensor_3);
-  sensor_sensor_4 = new sensor::Sensor();
-  App.register_sensor(sensor_sensor_4);
-  sensor_sensor_4->set_name("LY1 Desk_Setup Bater\303\255a (V)");
-  sensor_sensor_4->set_disabled_by_default(false);
-  sensor_sensor_4->set_entity_category(::ENTITY_CATEGORY_DIAGNOSTIC);
-  sensor_sensor_4->set_device_class("voltage");
-  sensor_sensor_4->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
-  sensor_sensor_4->set_unit_of_measurement("V");
-  sensor_sensor_4->set_accuracy_decimals(3);
-  sensor_sensor_4->set_force_update(false);
-  atc_mithermometer_atcmithermometer->set_battery_voltage(sensor_sensor_4);
   // network:
   //   {}
   // socket:

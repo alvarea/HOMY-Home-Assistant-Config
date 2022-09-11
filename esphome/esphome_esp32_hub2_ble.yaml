@@ -38,9 +38,9 @@ sensor:
       name: "LY1 Desk_Setup Humedad"
     battery_level:
       name: "LY1 Desk_Setup Batería Nivel"
-    battery_voltage:
-      name: "LY1 Desk_Setup Batería (V)"
-    #signal_strength:
+    #battery_voltage:
+    #  name: "LY1 Desk_Setup Batería (V)"
+    # signal_strength:
     #  name: "LY1 Desk_Setup Señal"
 
 #  Configuración Inicial con el Firmware Orignal de Xiaomi.
