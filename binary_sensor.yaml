@@ -714,11 +714,12 @@
           {% if is_state('binary_sensor.riego_automatico_hoy','on') %} mdi:head-cog-outline
           {% else %} mdi:head-remove-outline
           {% endif %}
+        # states('sensor.season') in ('autumn','winter','spring')
+        # FORMULA IA ACTUAL SIMPLE
+        #   Si la previsión de lluvia para hoy o mañana es verdadero => SENSOR IA RIEGO HOY => FALSE
         value_template: >-
-          {% if states('sensor.season') in ('autumn','winter','spring')
-                and ( is_state('binary_sensor.aemet_prevision_lluvia_0d','on')
+          {% if (is_state('binary_sensor.aemet_prevision_lluvia_0d','on')
                       or  is_state('binary_sensor.aemet_prevision_lluvia_1d','on')
-                      or  is_state('binary_sensor.aemet_prevision_lluvia_2d','on')
                 )
           %}
             false

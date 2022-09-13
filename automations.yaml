@@ -1493,7 +1493,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.piscina_interruptor_global  # Interruptor General Riego segun Forecast Tiempo
+        entity_id: input_boolean.piscina_interruptor_global  # Interruptor General Piscina
         state: 'on'
       - condition: state
         entity_id: binary_sensor.piscina_depuradora_ch0_dia_ejecucion_t2  # Sensor del programador on/off
@@ -1757,7 +1757,7 @@
             - service: input_boolean.turn_off
               target:
                 entity_id: input_boolean.riego_interruptor_global
-        # ELIF Riego Off AND HOY  Se Riega (No Llueve) => Apaga Riego
+        # ELIF Riego Off AND HOY  Se Riega (No Llueve) => Enciende Riego
         - conditions:
           - condition: template
             value_template: "{{ is_state('input_boolean.riego_interruptor_global','off') and is_state('binary_sensor.riego_automatico_hoy','on') }}"
