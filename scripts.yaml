@@ -988,7 +988,7 @@ notifica_evento:
 #-----------------------------------------------------------------------------#
 
 luz_on_armed_home:
-  alias: 'Luces On Entrada si Sensor'
+  alias: 'Leds Alarma On si Sensor'
   sequence:
     # When a condition does not return true, the script will finish
     # Check Panel Alarma <> armed_home ==> Exit
@@ -997,10 +997,11 @@ luz_on_armed_home:
       state: 'armed_home'
     # Enciende Piloto Azul Alarma
     - service: light.turn_on
-      entity_id: light.gateway_light_7811dcb788fa
+      entity_id: light.luz_gateway_aqara
       data:
-        brightness: 50
+        brightness: 75
         rgb_color: [0, 0, 254]
+
 
 luces_on_family_home:
   alias: 'Family at Home Piloto ON'

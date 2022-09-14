@@ -218,19 +218,12 @@
       entity_id: alarm_control_panel.ha
       from: 'disarmed'
       to: 'arming'
-  action:
-    #- service: script.alarma_to_pending
-    #  data_template:
-    #    fromstate: '{{trigger.from_state.state}}'
-    #    tostate: '{{trigger.to_state.state}}'
-    #    ringtone_msg: 10005
-
+  action:   
     # Script Envío Sonido Alexa Alexa
     - service: script.alexa_secuencia_alarma_armado
       data_template:
         voz: "¡ATENCION!, alarma activada. Tiene un minuto para salir. ATENCION!, alarma activada. Salga ahora, por favor."
         sonido: "{{ states('input_select.alarma_sonido_desarmado') }}"
-
 #
 # REGLA: ALARMA ARMED A <PENDING>
 #
@@ -274,6 +267,14 @@
       entity_id: alarm_control_panel.ha
       to: 'armed_away'
   action:
+    # Encendido Led Azul Tag Reader
+    - service: light.turn_on
+      entity_id: light.tagreader_led
+      data:
+        color_name: red
+        transition: 3
+        brightness: 128
+
     # INICIALIZA EL SENSOR DEL TRIGGER
     - service: input_text.set_value
       entity_id: input_text.alarm_trigger
@@ -315,6 +316,14 @@
       entity_id: alarm_control_panel.ha
       to: 'armed_home'
   action:
+    # Encendido Led Azul Tag Reader
+    - service: light.turn_on
+      entity_id: light.tagreader_led
+      data:
+        color_name: blue
+        transition: 3
+        brightness: 128
+
     # ALMACENA EL SENSOR DEL TRIGGER
     - service: input_text.set_value
       entity_id: input_text.alarm_trigger
@@ -370,10 +379,12 @@
     # Aviso sonoro con Xiaomi GW
     #- service: script.sirena_xiaomi_play_alarm_disarmed
 
-    # Apaga Luz Piloto Gateway
+    # Apaga Luz Piloto Alarma
     - service: light.turn_off
-      entity_id: light.gateway_light_7811dcb788fa
-
+      entity_id: 
+        - light.luz_gateway_aqara
+        - light.tagreader_led
+      
     # Script Envío Sonido Alexa Alexa
     - service: script.alexa_secuencia
       data_template:
@@ -1001,14 +1012,9 @@
         # en el amanecer +3h'
         before_offset: "+03:00:00"
   action:
-    #- service: automation.turn_off
-    #  entity_id: automation.l07_luces_on_entrada_segun_sensor
     # Luces Entrada ON
     - service: light.turn_on
       entity_id: light.luz_entrada
-      #data:
-      #  brightness: 120
-      #  rgb_color: [254, 0, 0]
     # Si Alarm.Armed_Home => Piloto ON
     - service: script.luz_on_armed_home
     # Espera de 5'
@@ -1017,7 +1023,7 @@
     - service: light.turn_off
       entity_id:
         - light.luz_entrada
-        - light.gateway_light_7811dcb788fa
+        - light.luz_gateway_aqara
 
 - id: L08
   alias: 'L08 Luces On Dormitorio Según Sensor'
@@ -1052,9 +1058,9 @@
     - delay: '00:10:00'
     # Luces Off
     - service: light.turn_off
-      entity_id: light.dormitorio
-    - service: switch.turn_off
-      entity_id: light.esphome_s20_sw1_led
+      entity_id: 
+        - light.dormitorio
+        - light.esphome_s20_sw1_led
 
 - id: L09
   alias: 'L09 Luces On Dormitorio Warning'
@@ -1236,17 +1242,24 @@
         transition: 3
 
 
-#- id: L16
-# alias: 'L16 Cube TapTwice Estudio Persiana On-Off'
-#  mode: restart
-#  trigger:
-#    platform: event
-#    event_type: xiaomi_aqara.cube_action
-#    event_data:
-#      entity_id: binary_sensor.cube_158d00024a4a62
-#      action_type: tap_twice
-#  action:
-#    - service: script.estudio_persiana_start_stop
+- id: L16
+  alias: 'L16 Cube TapTwice'
+  mode: restart
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d00024a4a62
+      action_type: tap_twice
+  action:
+    # Encendido Led Azul Tag Reader
+    - service: light.turn_on
+      entity_id: light.tagreader_led
+      data:
+        color_name: red
+        transition: 3
+        brightness: 255
+
 
 - id: L17
   alias: 'L17 Cube TapTwice Estudio Persiana Mode'

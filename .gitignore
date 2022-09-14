@@ -19,11 +19,11 @@ tts
 www
 
 # Specific file ignores
+config.code-workspace
 core
 image
 ip_bans.yaml
 secrets.yaml
-/esphome/secrets.yaml
 phue.conf
 
 # Build-in blueprints ignores
@@ -31,7 +31,8 @@ blueprints/*/homeassistant
 
 # ESPHome ignores
 esphome/.*
-esphome/.esphome
+esphome/.esphome*
+esphome/secrets.yaml
 
 # Ignore files created by IDE's
 .vscode
