@@ -448,7 +448,7 @@ cloud:
 #
 recorder:
   db_url: !secret mariadb_url
-  purge_keep_days: 30
+  purge_keep_days: 90
   auto_purge: true
   commit_interval: 60
   include:
@@ -472,27 +472,27 @@ recorder:
 #
 # InfluxDB database . 05.11.2021
 #
-influxdb:
-  host: !secret influxdb_host
-  port: 8086
-  database: !secret influxdb_database
-  username: !secret influxdb_username
-  password: !secret influxdb_pwd
-  max_retries: 3
-  default_measurement: state
-  include:
-    domains:
-      - alarm_control_panel
-      - light
-      - input_boolean
-      - sensor
-      - binary_sensor
-      - switch
-      - energy
-      - person
-      - device_tracker
-      - weather
-      - person
+#influxdb:
+#  host: !secret influxdb_host
+#  port: 8086
+#  database: !secret influxdb_database
+#  username: !secret influxdb_username
+#  password: !secret influxdb_pwd
+#  max_retries: 3
+#  default_measurement: state
+#  include:
+#    domains:
+#      - alarm_control_panel
+#      - light
+#      - input_boolean
+#      - sensor
+#      - binary_sensor
+#      - switch
+#      - energy
+#      - person
+#      - device_tracker
+#      - weather
+#      - person
 
 weather:
   - platform: darksky
@@ -563,39 +563,13 @@ plant:
     min_temperature: 5
     max_temperature: 38
 
-sonoff:
-  username: !secret sonoff_ewelink_user
-  password: !secret sonoff_ewelink_pwd
-  devices:
-    # 051 Alvarea.net SONOFF Mini SW1 Luces Exterior
-    1000b4adc4:
-      device_class: light
-      name: Sonoff Mini SW1
+# Integración con dispositivos sonoff a traves de componente sonoff
+# 
+# sonoff:
+#   username: !secret sonoff_ewelink_user
+#   password: !secret sonoff_ewelink_pwd
+#   devices:
 
-    # 052 Alvarea.net SONOFF Mini SW2 Luces Jardín
-    1000b5aa49:
-      device_class: light
-      name: Sonoff Mini SW2
-
-    # 053 Alvarea.net SONOFF Mini SW3 Estudio Cuadro Beer
-    1001057e5c:
-      device_class: light
-      name: Sonoff Mini SW3
-
-    # 054 Alvarea.net SONOFF Mini SW4 Estudio Lamparita 
-    100104fe64:
-      device_class: light
-      name: Sonoff Mini SW4
-
-    # 055 Alvarea.net SONOFF Mini SW5
-    100153551a:
-      device_class: switch
-      name: Sonoff Mini SW5
-
-    # 056 Alvarea.net SONOFF Mini SW6
-    100152b44c:
-      device_class: switch
-      name: Sonoff Mini SW6
 
 # iCloud Calendar Integration - CALDAV
 calendar:

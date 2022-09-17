@@ -1253,13 +1253,8 @@
       action_type: tap_twice
   action:
     # Encendido Led Azul Tag Reader
-    - service: light.turn_on
-      entity_id: light.tagreader_led
-      data:
-        color_name: red
-        transition: 3
-        brightness: 255
-
+    - service: switch.turn_on
+      entity_id: switch.esphome_bas_sw3
 
 - id: L17
   alias: 'L17 Cube TapTwice Estudio Persiana Mode'
@@ -2619,54 +2614,38 @@
           - switch.tagreader_9a0be4_led_enabled
 
 - id: T01
-  alias: 'NFC AAC Tag Alarma Desarmado'
+  alias: 'NFC AAC Tag1 Alarma '
   trigger:
     - platform: tag
-      tag_id: 04-50-B6-01-25-3B-03 # AAC Green Taf
-  action:
-    # Desarmado de Alarma
-    - service: alarm_control_panel.alarm_disarm
-      data:
-        entity_id: alarm_control_panel.ha
-        code: !secret alarm_control_code
-
-- id: T02
-  alias: 'NFC MFC Tag Alarma Desarmado'
-  trigger:
+      tag_id: 04-50-B6-01-25-3B-03 # AAC Green Tag
     - platform: tag
-      tag_id: 04-50-4F-01-B5-1D-03 # Malen Red Tag
-  action:
-    # Desarmado de Alarma
-    - service: alarm_control_panel.alarm_disarm
-      data:
-        entity_id: alarm_control_panel.ha
-        code: !secret alarm_control_code
-
-- id: T03
-  alias: 'NFC AAF Tag Alarma Desarmado'
-  trigger:
+      tag_id: 04-50-4F-01-B5-1D-03 # MFC Red Tag
     - platform: tag
       tag_id: 04-50-9A-01-7D-1D-03 # AAF Red Tag
-  action:
-    # Desarmado de Alarma
-    - service: alarm_control_panel.alarm_disarm
-      data:
-        entity_id: alarm_control_panel.ha
-        code: !secret alarm_control_code
-
-- id: T04
-  alias: 'NFC PAF Tag Alarma Desarmado'
-  trigger:
     - platform: tag
       tag_id: 04-50-B3-01-0D-3B-03 # PAF Red Tag
   action:
-    # Desarmado de Alarma
-    - service: alarm_control_panel.alarm_disarm
-      data:
-        entity_id: alarm_control_panel.ha
-        code: !secret alarm_control_code
+    - choose:
+      # IF Alarma Homy = Desarmada => Armado Away
+      - conditions:
+        - condition: state
+          entity_id: alarm_control_panel.ha
+          state: 'disarmed'
+        sequence:
+          # Armardo Away
+          - service: alarm_control_panel.alarm_arm_away
+            data:
+              entity_id: alarm_control_panel.ha
+              code: !secret alarm_control_code
+    #ELSE alarma armado home/away => Desarmado
+      default:
+        # Desarmado
+        - service: alarm_control_panel.alarm_disarm
+          data:
+            entity_id: alarm_control_panel.ha
+            code: !secret alarm_control_code
 
-- id: T05
+- id: T02
   alias: 'NFC Tag Credit Card Botón Pánico'
   trigger:
     - platform: tag
@@ -2677,7 +2656,7 @@
       entity_id: input_boolean.panic_button
     - service: script.alarma_boton_panico
 
-- id: T06
+- id: T03
   alias: 'NFC Home Blue Tag - Armado Away'
   trigger:
     - platform: tag

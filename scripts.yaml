@@ -1644,6 +1644,10 @@ escena_estudio_home_cinema:
 firetv_estudio_movistar_a3:
   alias: 'FireTV Estudio MovistarTV A3'
   sequence:
+
+    - service: media_player.turn_on
+      target:
+        entity_id: media_player.firetv_estudio
     - service: media_player.select_source
       data:
         source: com.movistarplus.androidtv
@@ -1655,6 +1659,7 @@ firetv_estudio_movistar_a3:
         entity_id: media_player.firetv_estudio
       data:
         command: "DOWN"
+    - delay: "00:00:01"
     - service: androidtv.adb_command
       target:
         entity_id: media_player.firetv_estudio
