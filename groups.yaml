@@ -24,12 +24,13 @@ alarma_sensores_perimetro_grp:
   entities:
     - binary_sensor.door_window_sensor_158d00022b393c       # Puerta Entrada
     - binary_sensor.door_window_sensor_158d000201e2e7       # Puerta Salón
-    - binary_sensor.door_window_sensor_158d00020b7c27       # Ventana MFC
+    - binary_sensor.door_window_sensor_158d000847effe       # Ventana M&D
     - binary_sensor.door_window_sensor_158d00020457e0       # Ventana Plancha
     - binary_sensor.door_window_sensor_158d00020910b1       # Ventana AAF
     - binary_sensor.door_window_sensor_158d00045d69a6       # Ventana PAF
     - binary_sensor.door_window_sensor_158d00030996fc       # Ventana Estudio Izquierda
     - binary_sensor.door_window_sensor_158d0004508a6d       # Ventana Estudio Derecha
+
 
 alarma_sensores_presencia_interior_grp:
   name: Grupo Sensores Presencia Interior

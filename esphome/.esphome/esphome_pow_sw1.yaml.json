@@ -2,7 +2,7 @@
   "storage_version": 1,
   "name": "esphome_pow_sw1",
   "comment": null,
-  "esphome_version": "2022.8.0",
+  "esphome_version": "2022.8.3",
   "src_version": 1,
   "address": "192.168.0.36",
   "web_port": null,
@@ -27,6 +27,7 @@
     "preferences",
     "socket",
     "status",
+    "substitutions",
     "switch",
     "wifi"
   ]

@@ -17,7 +17,10 @@ homeassistant:
   legacy_templates: true
   # Media content
   media_dirs:
-    local: /media
+    media: "/media"
+    www: "/config/www"
+  allowlist_external_urls:
+    - "https://youtu.be/fLWacgcUMKw"
 #
 #  auth_providers:
 #    - type: homeassistant

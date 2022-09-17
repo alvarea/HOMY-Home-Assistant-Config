@@ -1,8 +1,17 @@
 #
 # ESPHOME - POW SW1 - RIEGO BONSAIS PRODUCCION
 #
-esphomeyaml:
-  name: esphome_pow_sw1
+# FTDDI CABLE 1 ROJO-MARRON
+#   GND => MARRON
+#   R   => ROJO
+#   TX  => NARANJA
+#   VCC => AMARILLO - 3.3V
+#
+substitutions:
+  device_name: esphome_pow_sw1
+
+esphome:
+  name: ${device_name}
   platform: ESP8266
   board: esp01_1m
   board_flash_mode: dout
@@ -17,9 +26,6 @@ wifi:
 
 api:
 
-# Enable logging
-logger:
-
 ota:
 
 binary_sensor:
@@ -28,20 +34,19 @@ binary_sensor:
       number: GPIO0
       mode: INPUT_PULLUP
       inverted: True
-    name: "esphome pow sw1 boton"
+    name: ${device_name}_boton
   - platform: status
-    name: "esphome pow sw1 status"
-
+    name: ${device_name}_status
 
 switch:
   - platform: gpio
-    name: "esphome pow sw1"
+    name: ${device_name}
     pin: GPIO12
 
 output:
   # Register the green LED as a dimmable output ....
   - platform: esp8266_pwm
-    id: pow_sw1_green_led
+    id: ${device_name}_led
     pin:
       number: GPIO13
       inverted: True
@@ -49,5 +54,10 @@ output:
 light:
   # ... and then make a light out of it.
   - platform: monochromatic
-    name: "esphome pow sw1 LED"
-    output: pow_sw1_green_led
+    name: ${device_name}_led
+    output: ${device_name}_led
+
+# Example configuration entry
+# Disable logging over USB
+logger:
+  baud_rate: 0

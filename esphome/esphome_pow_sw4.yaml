@@ -7,8 +7,11 @@
 #   TX  => NARANJA
 #   VCC => AMARILLO - 3.3V
 #
+substitutions:
+  device_name: esphome_pow_sw4
+
 esphome:
-  name: esphome_pow_sw4
+  name: ${device_name}
   platform: ESP8266
   board: esp01_1m
   board_flash_mode: dout
@@ -31,19 +34,19 @@ binary_sensor:
       number: GPIO0
       mode: INPUT_PULLUP
       inverted: True
-    name: "esphome pow sw4 boton"
+    name: ${device_name}_boton
   - platform: status
-    name: "esphome pow sw4 status"
+    name: ${device_name}_status
 
 switch:
   - platform: gpio
-    name: "esphome pow sw4"
+    name: ${device_name}
     pin: GPIO12
 
 output:
   # Register the green LED as a dimmable output ....
   - platform: esp8266_pwm
-    id: pow_sw4_green_led
+    id: ${device_name}_green_led
     pin:
       number: GPIO13
       inverted: True
@@ -51,8 +54,8 @@ output:
 light:
   # ... and then make a light out of it.
   - platform: monochromatic
-    name: "esphome pow sw4 led"
-    output: pow_sw4_green_led
+    name: ${device_name}_led
+    output: ${device_name}_green_led
 
 # Example configuration entry
 # Disable logging over USB
@@ -67,8 +70,8 @@ sensor:
   - platform: cse7766
     update_interval: 30s
     current:
-      name: "esphome pow sw4 Current"
+      name: ${device_name}_current
     voltage:
-      name: "esphome pow sw4 Voltage"
+      name: ${device_name}_voltage
     power:
-      name: "esphome pow sw4 Power"
+      name: ${device_name}_power

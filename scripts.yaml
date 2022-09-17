@@ -1622,3 +1622,41 @@ estudio_persiana_start_stop:
       default:
         # => Para motor
          - service: script.estudio_persiana_stop
+
+#-----------------------------------------------------------------------------#
+#                                                                             #
+# CONTROL SECUENCIAS ESCENAS                                                  #
+#                                                                             #
+#-----------------------------------------------------------------------------#
+
+escena_estudio_home_cinema:
+  alias: 'Estudio Escena Home Cinema'
+  sequence:
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.firetv_estudio
+      data:
+        media_content_type: video/mp4
+        #media_content_id: "https://youtu.be/fLWacgcUMKw"
+        media_content_id: /local/dolby-atmos-demo.mp4
+
+
+firetv_estudio_movistar_a3:
+  alias: 'FireTV Estudio MovistarTV A3'
+  sequence:
+    - service: media_player.select_source
+      data:
+        source: com.movistarplus.androidtv
+      target:
+        entity_id: media_player.firetv_estudio
+    - delay: "00:00:05"
+    - service: androidtv.adb_command
+      target:
+        entity_id: media_player.firetv_estudio
+      data:
+        command: "DOWN"
+    - service: androidtv.adb_command
+      target:
+        entity_id: media_player.firetv_estudio
+      data:
+        command: "CENTER"

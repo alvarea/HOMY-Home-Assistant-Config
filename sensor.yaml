@@ -344,14 +344,15 @@
       #  friendly_name: 'Duración Programa Activo'
       #  icon_template: "{{ 'mdi:timer-sand' if states('input_text.piscina_depuradora_ch0_duracion_programa') is not none }}"
 
-      piscina_depuradora_ch0_diario_endtime:
-        friendly_name: 'Sensor Hora Finalización'
-        icon_template: "{{ 'mdi:timer-sand' if states('input_number.piscina_depuradora_ch0_diario_horas') is not none }}"
-        value_template: '{% if states.input_number.piscina_depuradora_ch0_diario_horas.state | int + states.input_datetime.piscina_depuradora_ch0_start_time.attributes.hour | int < 24 %}
-                            {{ states.input_number.piscina_depuradora_ch0_diario_horas.state | int + states.input_datetime.piscina_depuradora_ch0_start_time.attributes.hour | int }}:00:00
-                         {% else %}
-                            {{ states.input_number.piscina_depuradora_ch0_diario_horas.state | int + states.input_datetime.piscina_depuradora_ch0_start_time.attributes.hour | int - 24 }}:00:00
-                         {% endif %}'
+      # Comentado 17.09.22 por error en log, aparentemente no utilizado
+      #piscina_depuradora_ch0_diario_endtime:
+      #  friendly_name: 'Sensor Hora Finalización'
+      #  icon_template: "{{ 'mdi:timer-sand' if states('input_number.piscina_depuradora_ch0_diario_horas') is not none }}"
+      #  value_template: '{% if states.input_number.piscina_depuradora_ch0_diario_horas.state | int + states.input_datetime.piscina_depuradora_ch0_start_time.attributes.hour | int < 24 %}
+      #                      {{ states.input_number.piscina_depuradora_ch0_diario_horas.state | int + states.input_datetime.piscina_depuradora_ch0_start_time.attributes.hour | int }}:00:00
+      #                   {% else %}
+      #                      {{ states.input_number.piscina_depuradora_ch0_diario_horas.state | int + states.input_datetime.piscina_depuradora_ch0_start_time.attributes.hour | int - 24 }}:00:00
+      #                   {% endif %}'
 
       piscina_depuradora_ch0_manual_segundos:
         value_template: '{{ states.input_number.piscina_depuradora_ch0_manual_minutos.state |int(0) *60 }}'
@@ -500,36 +501,40 @@
       # CONTROL ESPHOME_4CH_SW3 - RIEGO CESPED
       #
 
+      # Comentado 17.09.22 por error en log, aparentemente no utilizado
+      #
+
       # CH1 Duracion Programa Diario-Semanal
-      riego_cesped_ch1_start_time_t1:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t1.state }}'
-        friendly_name: 'Cesped CH1 - Start Time Tramo-1'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch1_start_time_t1') is not none }}"
+      #
+      #riego_cesped_ch1_start_time_t1:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t1.state }}'
+      #  friendly_name: 'Cesped CH1 - Start Time Tramo-1'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch1_start_time_t1') is not none }}"
+      
+      #riego_cesped_ch1_end_time_t1:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t1.state }}'
+      #  friendly_name: 'Cesped CH1 - Start Time Tramo-1'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch1_end_time_t1') is not none }}"
 
-      riego_cesped_ch1_end_time_t1:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t1.state }}'
-        friendly_name: 'Cesped CH1 - Start Time Tramo-1'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch1_end_time_t1') is not none }}"
+      #riego_cesped_ch1_start_time_t2:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t2.state }}'
+      #  friendly_name: 'Cesped CH1 - Start Time Tramo-2'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch1_start_time_t2') is not none }}"
 
-      riego_cesped_ch1_start_time_t2:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t2.state }}'
-        friendly_name: 'Cesped CH1 - Start Time Tramo-2'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch1_start_time_t2') is not none }}"
+      #riego_cesped_ch1_end_time_t2:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t2.state }}'
+      #  friendly_name: 'Cesped CH1 - Start Time Tramo-2'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch1_end_time_t2') is not none }}"
 
-      riego_cesped_ch1_end_time_t2:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t2.state }}'
-        friendly_name: 'Cesped CH1 - Start Time Tramo-2'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch1_end_time_t2') is not none }}"
+      #riego_cesped_ch1_start_time_t3:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t3.state }}'
+      #  friendly_name: 'Cesped CH1 - Start Time Tramo-3'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch1_start_time_t3') is not none }}"
 
-      riego_cesped_ch1_start_time_t3:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t3.state }}'
-        friendly_name: 'Cesped CH1 - Start Time Tramo-3'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch1_start_time_t3') is not none }}"
-
-      riego_cesped_ch1_end_time_t3:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t3.state }}'
-        friendly_name: 'Cesped CH1 - Start Time Tramo-3'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch1_end_time_t3') is not none }}"
+      #riego_cesped_ch1_end_time_t3:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t3.state }}'
+      #  friendly_name: 'Cesped CH1 - Start Time Tramo-3'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch1_end_time_t3') is not none }}"
 
       riego_cesped_ch1_duracion_planificada_t1:
         value_template: '{{ "{:}".format((states.input_datetime.riego_cesped_ch1_end_time_t1.attributes.timestamp -  states.input_datetime.riego_cesped_ch1_start_time_t1.attributes.timestamp)/60)|int }}'
@@ -566,35 +571,35 @@
         icon_template: "{{ 'mdi:timer-sand' if states('sensor.riego_cesped_ch1_duracion_planificada_total') is not none }}"
 
       # CH2 Duracion Programa Diario-Semanal
-      riego_cesped_ch2_start_time_t1:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t1.state }}'
-        friendly_name: 'Cesped ch2 - Start Time Tramo-1'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch2_start_time_t1') is not none }}"
+      #riego_cesped_ch2_start_time_t1:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t1.state }}'
+      #  friendly_name: 'Cesped ch2 - Start Time Tramo-1'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch2_start_time_t1') is not none }}"
 
-      riego_cesped_ch2_end_time_t1:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t1.state }}'
-        friendly_name: 'Cesped ch2 - Start Time Tramo-1'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch2_end_time_t1') is not none }}"
+      #riego_cesped_ch2_end_time_t1:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t1.state }}'
+      #  friendly_name: 'Cesped ch2 - Start Time Tramo-1'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch2_end_time_t1') is not none }}"
 
-      riego_cesped_ch2_start_time_t2:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t2.state }}'
-        friendly_name: 'Cesped ch2 - Start Time Tramo-2'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch2_start_time_t2') is not none }}"
+      #riego_cesped_ch2_start_time_t2:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t2.state }}'
+      #  friendly_name: 'Cesped ch2 - Start Time Tramo-2'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch2_start_time_t2') is not none }}"
 
-      riego_cesped_ch2_end_time_t2:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t2.state }}'
-        friendly_name: 'Cesped ch2 - Start Time Tramo-2'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch2_end_time_t2') is not none }}"
+      #riego_cesped_ch2_end_time_t2:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t2.state }}'
+      #  friendly_name: 'Cesped ch2 - Start Time Tramo-2'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch2_end_time_t2') is not none }}"
 
-      riego_cesped_ch2_start_time_t3:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t3.state }}'
-        friendly_name: 'Cesped ch2 - Start Time Tramo-3'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch2_start_time_t3') is not none }}"
+      #riego_cesped_ch2_start_time_t3:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t3.state }}'
+      #  friendly_name: 'Cesped ch2 - Start Time Tramo-3'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch2_start_time_t3') is not none }}"
 
-      riego_cesped_ch2_end_time_t3:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t3.state }}'
-        friendly_name: 'Cesped ch2 - Start Time Tramo-3'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch2_end_time_t3') is not none }}"
+      #riego_cesped_ch2_end_time_t3:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t3.state }}'
+      #  friendly_name: 'Cesped ch2 - Start Time Tramo-3'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch2_end_time_t3') is not none }}"
 
       riego_cesped_ch2_duracion_planificada_t1:
         value_template: '{{ "{:}".format((states.input_datetime.riego_cesped_ch2_end_time_t1.attributes.timestamp -  states.input_datetime.riego_cesped_ch2_start_time_t1.attributes.timestamp)/60)|int }}'
@@ -632,25 +637,25 @@
         icon_template: "{{ 'mdi:timer-sand' if states('sensor.riego_cesped_ch2_duracion_planificada_total') is not none }}"
 
       # CH3 Duracion Programa Diario-Semanal
-      riego_cesped_ch3_start_time_t1:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t1.state }}'
-        friendly_name: 'Cesped ch3 - Start Time Tramo-1'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch3_start_time_t1') is not none }}"
+      #riego_cesped_ch3_start_time_t1:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t1.state }}'
+      #  friendly_name: 'Cesped ch3 - Start Time Tramo-1'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch3_start_time_t1') is not none }}"
 
-      riego_cesped_ch3_end_time_t1:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t1.state }}'
-        friendly_name: 'Cesped ch3 - Start Time Tramo-1'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch3_end_time_t1') is not none }}"
+      #riego_cesped_ch3_end_time_t1:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t1.state }}'
+      #  friendly_name: 'Cesped ch3 - Start Time Tramo-1'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch3_end_time_t1') is not none }}"
 
-      riego_cesped_ch3_start_time_t2:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t2.state }}'
-        friendly_name: 'Cesped ch3 - Start Time Tramo-2'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch3_start_time_t2') is not none }}"
+      #riego_cesped_ch3_start_time_t2:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t2.state }}'
+      #  friendly_name: 'Cesped ch3 - Start Time Tramo-2'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch3_start_time_t2') is not none }}"
 
-      riego_cesped_ch3_end_time_t2:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t2.state }}'
-        friendly_name: 'Cesped ch3 - Start Time Tramo-2'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch3_end_time_t2') is not none }}"
+      #riego_cesped_ch3_end_time_t2:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t2.state }}'
+      #  friendly_name: 'Cesped ch3 - Start Time Tramo-2'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch3_end_time_t2') is not none }}"
 
       riego_cesped_ch3_duracion_planificada_t1:
         value_template: '{{ "{:}".format((states.input_datetime.riego_cesped_ch3_end_time_t1.attributes.timestamp -  states.input_datetime.riego_cesped_ch3_start_time_t1.attributes.timestamp)/60)|int }}'
@@ -677,25 +682,25 @@
         icon_template: "{{ 'mdi:timer-sand' if states('sensor.riego_cesped_ch3_duracion_planificada_total') is not none }}"
 
       # CH4 Duracion Programa Diario-Semanal
-      riego_cesped_ch4_start_time_t1:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t1.state }}'
-        friendly_name: 'Cesped ch4 - Start Time Tramo-1'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch4_start_time_t1') is not none }}"
+      #riego_cesped_ch4_start_time_t1:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t1.state }}'
+      #  friendly_name: 'Cesped ch4 - Start Time Tramo-1'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch4_start_time_t1') is not none }}"
 
-      riego_cesped_ch4_end_time_t1:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t1.state }}'
-        friendly_name: 'Cesped ch4 - Start Time Tramo-1'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch4_end_time_t1') is not none }}"
+      #riego_cesped_ch4_end_time_t1:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t1.state }}'
+      #  friendly_name: 'Cesped ch4 - Start Time Tramo-1'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch4_end_time_t1') is not none }}"
 
-      riego_cesped_ch4_start_time_t2:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t2.state }}'
-        friendly_name: 'Cesped ch4 - Start Time Tramo-2'
-        icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch4_start_time_t2') is not none }}"
+      #riego_cesped_ch4_start_time_t2:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_start_time_t2.state }}'
+      #  friendly_name: 'Cesped ch4 - Start Time Tramo-2'
+      #  icon_template: "{{ 'mdi:timer-play-outline' if states('sensor.riego_cesped_ch4_start_time_t2') is not none }}"
 
-      riego_cesped_ch4_end_time_t2:
-        value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t2.state }}'
-        friendly_name: 'Cesped ch4 - Start Time Tramo-2'
-        icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch4_end_time_t2') is not none }}"
+      #riego_cesped_ch4_end_time_t2:
+      #  value_template: '{{ states.input_datetime.riego_bonsais_ch0_end_time_t2.state }}'
+      #  friendly_name: 'Cesped ch4 - Start Time Tramo-2'
+      #  icon_template: "{{ 'mdi:timer-stop-outline' if states('sensor.riego_cesped_ch4_end_time_t2') is not none }}"
 
       riego_cesped_ch4_duracion_planificada_t1:
         value_template: '{{ "{:}".format((states.input_datetime.riego_cesped_ch4_end_time_t1.attributes.timestamp -  states.input_datetime.riego_cesped_ch4_start_time_t1.attributes.timestamp)/60)|int }}'

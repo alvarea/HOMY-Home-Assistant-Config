@@ -21,7 +21,7 @@ status::StatusBinarySensor *status_statusbinarysensor;
 gpio::GPIOSwitch *gpio_gpioswitch;
 esphome::esp8266::ESP8266GPIOPin *esphome_esp8266_esp8266gpiopin_2;
 using namespace output;
-esp8266_pwm::ESP8266PWM *pow_sw1_green_led;
+esp8266_pwm::ESP8266PWM *esphome_pow_sw1_led;
 esphome::esp8266::ESP8266GPIOPin *esphome_esp8266_esp8266gpiopin_3;
 monochromatic::MonochromaticLightOutput *monochromatic_monochromaticlightoutput;
 light::LightState *light_lightstate;
@@ -58,15 +58,15 @@ void setup() {
   // switch:
   // light:
   // logger:
+  //   baud_rate: 0
   //   id: logger_logger
-  //   baud_rate: 115200
   //   tx_buffer_size: 512
   //   deassert_rts_dtr: false
   //   hardware_uart: UART0
   //   level: DEBUG
   //   logs: {}
   //   esp8266_store_log_strings_in_flash: true
-  logger_logger = new logger::Logger(115200, 512, logger::UART_SELECTION_UART0);
+  logger_logger = new logger::Logger(0, 512, logger::UART_SELECTION_UART0);
   logger_logger->pre_setup();
   logger_logger->set_component_source("logger");
   App.register_component(logger_logger);
@@ -137,6 +137,8 @@ void setup() {
   api_apiserver->set_port(6053);
   api_apiserver->set_password("");
   api_apiserver->set_reboot_timeout(900000);
+  // substitutions:
+  //   device_name: esphome_pow_sw1
   // preferences:
   //   id: preferences_intervalsyncer
   //   flash_write_interval: 60s
@@ -157,12 +159,12 @@ void setup() {
   //       pulldown: false
   //     inverted: true
   //     id: esphome_esp8266_esp8266gpiopin
-  //   name: esphome pow sw1 boton
+  //   name: esphome_pow_sw1_boton
   //   disabled_by_default: false
   //   id: gpio_gpiobinarysensor
   gpio_gpiobinarysensor = new gpio::GPIOBinarySensor();
   App.register_binary_sensor(gpio_gpiobinarysensor);
-  gpio_gpiobinarysensor->set_name("esphome pow sw1 boton");
+  gpio_gpiobinarysensor->set_name("esphome_pow_sw1_boton");
   gpio_gpiobinarysensor->set_disabled_by_default(false);
   gpio_gpiobinarysensor->set_component_source("gpio.binary_sensor");
   App.register_component(gpio_gpiobinarysensor);
@@ -173,14 +175,14 @@ void setup() {
   gpio_gpiobinarysensor->set_pin(esphome_esp8266_esp8266gpiopin);
   // binary_sensor.status:
   //   platform: status
-  //   name: esphome pow sw1 status
+  //   name: esphome_pow_sw1_status
   //   disabled_by_default: false
   //   id: status_statusbinarysensor
   //   entity_category: diagnostic
   //   device_class: connectivity
   status_statusbinarysensor = new status::StatusBinarySensor();
   App.register_binary_sensor(status_statusbinarysensor);
-  status_statusbinarysensor->set_name("esphome pow sw1 status");
+  status_statusbinarysensor->set_name("esphome_pow_sw1_status");
   status_statusbinarysensor->set_disabled_by_default(false);
   status_statusbinarysensor->set_entity_category(::ENTITY_CATEGORY_DIAGNOSTIC);
   status_statusbinarysensor->set_device_class("connectivity");
@@ -188,7 +190,7 @@ void setup() {
   App.register_component(status_statusbinarysensor);
   // switch.gpio:
   //   platform: gpio
-  //   name: esphome pow sw1
+  //   name: esphome_pow_sw1
   //   pin:
   //     number: 12
   //     mode:
@@ -208,7 +210,7 @@ void setup() {
   gpio_gpioswitch->set_component_source("gpio.switch");
   App.register_component(gpio_gpioswitch);
   App.register_switch(gpio_gpioswitch);
-  gpio_gpioswitch->set_name("esphome pow sw1");
+  gpio_gpioswitch->set_name("esphome_pow_sw1");
   gpio_gpioswitch->set_disabled_by_default(false);
   esphome_esp8266_esp8266gpiopin_2 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_2->set_pin(12);
@@ -219,7 +221,7 @@ void setup() {
   // output:
   // output.esp8266_pwm:
   //   platform: esp8266_pwm
-  //   id: pow_sw1_green_led
+  //   id: esphome_pow_sw1_led
   //   pin:
   //     number: 13
   //     inverted: true
@@ -233,20 +235,20 @@ void setup() {
   //     id: esphome_esp8266_esp8266gpiopin_3
   //   zero_means_zero: false
   //   frequency: 1000.0
-  pow_sw1_green_led = new esp8266_pwm::ESP8266PWM();
-  pow_sw1_green_led->set_component_source("esp8266_pwm.output");
-  App.register_component(pow_sw1_green_led);
-  pow_sw1_green_led->set_zero_means_zero(false);
+  esphome_pow_sw1_led = new esp8266_pwm::ESP8266PWM();
+  esphome_pow_sw1_led->set_component_source("esp8266_pwm.output");
+  App.register_component(esphome_pow_sw1_led);
+  esphome_pow_sw1_led->set_zero_means_zero(false);
   esphome_esp8266_esp8266gpiopin_3 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_3->set_pin(13);
   esphome_esp8266_esp8266gpiopin_3->set_inverted(true);
   esphome_esp8266_esp8266gpiopin_3->set_flags(gpio::Flags::FLAG_OUTPUT);
-  pow_sw1_green_led->set_pin(esphome_esp8266_esp8266gpiopin_3);
-  pow_sw1_green_led->set_frequency(1000.0f);
+  esphome_pow_sw1_led->set_pin(esphome_esp8266_esp8266gpiopin_3);
+  esphome_pow_sw1_led->set_frequency(1000.0f);
   // light.monochromatic:
   //   platform: monochromatic
-  //   name: esphome pow sw1 LED
-  //   output: pow_sw1_green_led
+  //   name: esphome_pow_sw1_led
+  //   output: esphome_pow_sw1_led
   //   disabled_by_default: false
   //   id: light_lightstate
   //   restore_mode: RESTORE_DEFAULT_OFF
@@ -259,14 +261,14 @@ void setup() {
   App.register_light(light_lightstate);
   light_lightstate->set_component_source("light");
   App.register_component(light_lightstate);
-  light_lightstate->set_name("esphome pow sw1 LED");
+  light_lightstate->set_name("esphome_pow_sw1_led");
   light_lightstate->set_disabled_by_default(false);
   light_lightstate->set_restore_mode(light::LIGHT_RESTORE_DEFAULT_OFF);
   light_lightstate->set_default_transition_length(1000);
   light_lightstate->set_flash_transition_length(0);
   light_lightstate->set_gamma_correct(2.8f);
   light_lightstate->add_effects({});
-  monochromatic_monochromaticlightoutput->set_output(pow_sw1_green_led);
+  monochromatic_monochromaticlightoutput->set_output(esphome_pow_sw1_led);
   // network:
   //   {}
   // socket:

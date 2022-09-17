@@ -267,11 +267,11 @@
       entity_id: alarm_control_panel.ha
       to: 'armed_away'
   action:
-    # Encendido Led Azul Tag Reader
+    # Encendido Led VERDE Tag Reader
     - service: light.turn_on
       entity_id: light.tagreader_led
       data:
-        color_name: red
+        color_name: green
         transition: 3
         brightness: 128
 
@@ -1056,7 +1056,7 @@
       entity_id: light.esphome_s20_sw1_led
     # Espera de 5'
     - delay: '00:10:00'
-    # Luces Off
+    # Luces Off + Led
     - service: light.turn_off
       entity_id: 
         - light.dormitorio
@@ -1855,8 +1855,8 @@
 #                entity_id: switch.esphome_pow_sw4
 #
 #
-- id: S18c
-  alias: 'S18c Set Luvia Ayer'
+- id: S19
+  alias: 'S19 Set Luvia Ayer'
   mode: restart
   trigger:
     - platform: time
@@ -1868,8 +1868,8 @@
         entity_id: input_text.riego_prevision_lluvia_ayer
         value: "{{ states('sensor.dark_sky_icon') }}"
 
-- id: S18D
-  alias: 'S01 Sonoff POW SW4 Boton'
+- id: S19b
+  alias: 'S19b Sonoff POW SW4 Boton'
   trigger:
     - platform: state
       entity_id: binary_sensor.esphome_pow_sw4_boton
@@ -1881,8 +1881,8 @@
 #
 # ESPHOME 4CH-R2 SW2 RIEGO : Relay1 BONSAIS TOP
 #
-- id: S19
-  alias: 'S19 Timer Riego CH1 Bonsais Top Tramo1'
+- id: S19c
+  alias: 'S19c Timer Riego CH1 Bonsais Top Tramo1'
   trigger:
     - platform: template
       value_template: "{{ states('sensor.time') == (states.input_datetime.riego_bonsais_ch1_start_time_t1.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
@@ -1904,8 +1904,8 @@
     - service: switch.turn_on
       entity_id: switch.esphome_4ch_sw2_relay_1
 
-- id: S19b
-  alias: 'S19 Timer Riego CH1 Bonsais Top Tramo2'
+- id: S19d
+  alias: 'S19d Timer Riego CH1 Bonsais Top Tramo2'
   trigger:
     - platform: template
       value_template: "{{ states('sensor.time') == (states.input_datetime.riego_bonsais_ch1_start_time_t2.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
@@ -2600,16 +2600,23 @@
 # REGLAS DE AUTOMATIZACION CON TAGS NFC                                       #
 #                                                                             #
 #-----------------------------------------------------------------------------#
+
+# Comprueba si el Tag Reader tiene apagado el led verde y sonido cuando lee un tag, para activarlo siempre.
 - id: T00
-  alias: 'NFC Home Blue Tag - Armado Away'
+  alias: 'Tagreader Check Led'
   trigger:
-    - platform: tag
-      tag_id: 2C-CA-F0-22
+    - platform: state
+      entity_id: switch.tagreader_9a0be4_buzzer_enabled
+      to: 'off'
+    - platform: state
+      entity_id: switch.tagreader_9a0be4_led_enabled
+      to: 'off'
   action:
-    - service: alarm_control_panel.alarm_arm_away
+    - service: switch.turn_on
       data:
-        entity_id: alarm_control_panel.ha
-        code: !secret alarm_control_code
+        entity_id: 
+          - switch.tagreader_9a0be4_buzzer_enabled
+          - switch.tagreader_9a0be4_led_enabled
 
 - id: T01
   alias: 'NFC AAC Tag Alarma Desarmado'
@@ -2669,6 +2676,17 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.panic_button
     - service: script.alarma_boton_panico
+
+- id: T06
+  alias: 'NFC Home Blue Tag - Armado Away'
+  trigger:
+    - platform: tag
+      tag_id: 2C-CA-F0-22
+  action:
+    - service: alarm_control_panel.alarm_arm_away
+      data:
+        entity_id: alarm_control_panel.ha
+        code: !secret alarm_control_code
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
@@ -2761,3 +2779,4 @@
       entity_id: 
         - switch.esphome_dual_sw1_relay_1
         - switch.esphome_dual_sw1_relay_2
+

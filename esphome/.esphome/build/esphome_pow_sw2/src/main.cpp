@@ -22,7 +22,7 @@ status::StatusBinarySensor *status_statusbinarysensor;
 gpio::GPIOSwitch *gpio_gpioswitch;
 esphome::esp8266::ESP8266GPIOPin *esphome_esp8266_esp8266gpiopin_2;
 using namespace output;
-esp8266_pwm::ESP8266PWM *pow_sw2_green_led;
+esp8266_pwm::ESP8266PWM *esphome_pow_sw2_green_led;
 esphome::esp8266::ESP8266GPIOPin *esphome_esp8266_esp8266gpiopin_3;
 monochromatic::MonochromaticLightOutput *monochromatic_monochromaticlightoutput;
 light::LightState *light_lightstate;
@@ -146,6 +146,8 @@ void setup() {
   api_apiserver->set_password("");
   api_apiserver->set_reboot_timeout(900000);
   // sensor:
+  // substitutions:
+  //   device_name: esphome_pow_sw2
   // preferences:
   //   id: preferences_intervalsyncer
   //   flash_write_interval: 60s
@@ -166,12 +168,12 @@ void setup() {
   //       pulldown: false
   //     inverted: true
   //     id: esphome_esp8266_esp8266gpiopin
-  //   name: esphome pow sw2 boton
+  //   name: esphome_pow_sw2_boton
   //   disabled_by_default: false
   //   id: gpio_gpiobinarysensor
   gpio_gpiobinarysensor = new gpio::GPIOBinarySensor();
   App.register_binary_sensor(gpio_gpiobinarysensor);
-  gpio_gpiobinarysensor->set_name("esphome pow sw2 boton");
+  gpio_gpiobinarysensor->set_name("esphome_pow_sw2_boton");
   gpio_gpiobinarysensor->set_disabled_by_default(false);
   gpio_gpiobinarysensor->set_component_source("gpio.binary_sensor");
   App.register_component(gpio_gpiobinarysensor);
@@ -182,14 +184,14 @@ void setup() {
   gpio_gpiobinarysensor->set_pin(esphome_esp8266_esp8266gpiopin);
   // binary_sensor.status:
   //   platform: status
-  //   name: esphome pow sw2 status
+  //   name: esphome_pow_sw2_status
   //   disabled_by_default: false
   //   id: status_statusbinarysensor
   //   entity_category: diagnostic
   //   device_class: connectivity
   status_statusbinarysensor = new status::StatusBinarySensor();
   App.register_binary_sensor(status_statusbinarysensor);
-  status_statusbinarysensor->set_name("esphome pow sw2 status");
+  status_statusbinarysensor->set_name("esphome_pow_sw2_status");
   status_statusbinarysensor->set_disabled_by_default(false);
   status_statusbinarysensor->set_entity_category(::ENTITY_CATEGORY_DIAGNOSTIC);
   status_statusbinarysensor->set_device_class("connectivity");
@@ -197,7 +199,7 @@ void setup() {
   App.register_component(status_statusbinarysensor);
   // switch.gpio:
   //   platform: gpio
-  //   name: esphome pow sw2
+  //   name: esphome_pow_sw2
   //   pin:
   //     number: 12
   //     mode:
@@ -207,8 +209,8 @@ void setup() {
   //       open_drain: false
   //       pullup: false
   //       pulldown: false
-  //     id: esphome_esp8266_esp8266gpiopin_2
   //     inverted: false
+  //     id: esphome_esp8266_esp8266gpiopin_2
   //   disabled_by_default: false
   //   id: gpio_gpioswitch
   //   restore_mode: RESTORE_DEFAULT_OFF
@@ -217,7 +219,7 @@ void setup() {
   gpio_gpioswitch->set_component_source("gpio.switch");
   App.register_component(gpio_gpioswitch);
   App.register_switch(gpio_gpioswitch);
-  gpio_gpioswitch->set_name("esphome pow sw2");
+  gpio_gpioswitch->set_name("esphome_pow_sw2");
   gpio_gpioswitch->set_disabled_by_default(false);
   esphome_esp8266_esp8266gpiopin_2 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_2->set_pin(12);
@@ -228,7 +230,7 @@ void setup() {
   // output:
   // output.esp8266_pwm:
   //   platform: esp8266_pwm
-  //   id: pow_sw2_green_led
+  //   id: esphome_pow_sw2_green_led
   //   pin:
   //     number: 13
   //     inverted: true
@@ -242,20 +244,20 @@ void setup() {
   //     id: esphome_esp8266_esp8266gpiopin_3
   //   zero_means_zero: false
   //   frequency: 1000.0
-  pow_sw2_green_led = new esp8266_pwm::ESP8266PWM();
-  pow_sw2_green_led->set_component_source("esp8266_pwm.output");
-  App.register_component(pow_sw2_green_led);
-  pow_sw2_green_led->set_zero_means_zero(false);
+  esphome_pow_sw2_green_led = new esp8266_pwm::ESP8266PWM();
+  esphome_pow_sw2_green_led->set_component_source("esp8266_pwm.output");
+  App.register_component(esphome_pow_sw2_green_led);
+  esphome_pow_sw2_green_led->set_zero_means_zero(false);
   esphome_esp8266_esp8266gpiopin_3 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_3->set_pin(13);
   esphome_esp8266_esp8266gpiopin_3->set_inverted(true);
   esphome_esp8266_esp8266gpiopin_3->set_flags(gpio::Flags::FLAG_OUTPUT);
-  pow_sw2_green_led->set_pin(esphome_esp8266_esp8266gpiopin_3);
-  pow_sw2_green_led->set_frequency(1000.0f);
+  esphome_pow_sw2_green_led->set_pin(esphome_esp8266_esp8266gpiopin_3);
+  esphome_pow_sw2_green_led->set_frequency(1000.0f);
   // light.monochromatic:
   //   platform: monochromatic
-  //   name: esphome pow sw2 led
-  //   output: pow_sw2_green_led
+  //   name: esphome_pow_sw2_led
+  //   output: esphome_pow_sw2_green_led
   //   disabled_by_default: false
   //   id: light_lightstate
   //   restore_mode: RESTORE_DEFAULT_OFF
@@ -268,14 +270,14 @@ void setup() {
   App.register_light(light_lightstate);
   light_lightstate->set_component_source("light");
   App.register_component(light_lightstate);
-  light_lightstate->set_name("esphome pow sw2 led");
+  light_lightstate->set_name("esphome_pow_sw2_led");
   light_lightstate->set_disabled_by_default(false);
   light_lightstate->set_restore_mode(light::LIGHT_RESTORE_DEFAULT_OFF);
   light_lightstate->set_default_transition_length(1000);
   light_lightstate->set_flash_transition_length(0);
   light_lightstate->set_gamma_correct(2.8f);
   light_lightstate->add_effects({});
-  monochromatic_monochromaticlightoutput->set_output(pow_sw2_green_led);
+  monochromatic_monochromaticlightoutput->set_output(esphome_pow_sw2_green_led);
   // uart:
   //   rx_pin:
   //     number: 3
@@ -286,8 +288,8 @@ void setup() {
   //       open_drain: false
   //       pullup: false
   //       pulldown: false
-  //     id: esphome_esp8266_esp8266gpiopin_4
   //     inverted: false
+  //     id: esphome_esp8266_esp8266gpiopin_4
   //   baud_rate: 4800
   //   id: uart_esp8266uartcomponent
   //   rx_buffer_size: 256
@@ -311,7 +313,7 @@ void setup() {
   //   platform: cse7766
   //   update_interval: 30s
   //   current:
-  //     name: esphome pow sw2 Current
+  //     name: esphome_pow_sw2_current
   //     disabled_by_default: false
   //     id: sensor_sensor
   //     force_update: false
@@ -320,7 +322,7 @@ void setup() {
   //     device_class: current
   //     state_class: measurement
   //   voltage:
-  //     name: esphome pow sw2 Voltage
+  //     name: esphome_pow_sw2_voltage
   //     disabled_by_default: false
   //     id: sensor_sensor_2
   //     force_update: false
@@ -329,7 +331,7 @@ void setup() {
   //     device_class: voltage
   //     state_class: measurement
   //   power:
-  //     name: esphome pow sw2 Power
+  //     name: esphome_pow_sw2_power
   //     disabled_by_default: false
   //     id: sensor_sensor_3
   //     force_update: false
@@ -346,7 +348,7 @@ void setup() {
   cse7766_cse7766component->set_uart_parent(uart_esp8266uartcomponent);
   sensor_sensor_2 = new sensor::Sensor();
   App.register_sensor(sensor_sensor_2);
-  sensor_sensor_2->set_name("esphome pow sw2 Voltage");
+  sensor_sensor_2->set_name("esphome_pow_sw2_voltage");
   sensor_sensor_2->set_disabled_by_default(false);
   sensor_sensor_2->set_device_class("voltage");
   sensor_sensor_2->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
@@ -356,7 +358,7 @@ void setup() {
   cse7766_cse7766component->set_voltage_sensor(sensor_sensor_2);
   sensor_sensor = new sensor::Sensor();
   App.register_sensor(sensor_sensor);
-  sensor_sensor->set_name("esphome pow sw2 Current");
+  sensor_sensor->set_name("esphome_pow_sw2_current");
   sensor_sensor->set_disabled_by_default(false);
   sensor_sensor->set_device_class("current");
   sensor_sensor->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
@@ -366,7 +368,7 @@ void setup() {
   cse7766_cse7766component->set_current_sensor(sensor_sensor);
   sensor_sensor_3 = new sensor::Sensor();
   App.register_sensor(sensor_sensor_3);
-  sensor_sensor_3->set_name("esphome pow sw2 Power");
+  sensor_sensor_3->set_name("esphome_pow_sw2_power");
   sensor_sensor_3->set_disabled_by_default(false);
   sensor_sensor_3->set_device_class("power");
   sensor_sensor_3->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
