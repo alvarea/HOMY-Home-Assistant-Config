@@ -1279,21 +1279,6 @@ riego_cesped_ch4_timer_cancel:
     - service: switch.turn_off
       entity_id: switch.esphome_4ch_sw3_relay_4
 
-#-----------------------------------------------------------------------------#
-#                                                                             #
-# SCRIPTS DE RIEGO BONSAIS SONOFF 4CH-SW2 CH1 - CH4                           #
-#                                                                             #
-#-----------------------------------------------------------------------------#
-#riego_tomates_ch1_timer_start_diario:
-#  alias: Timer Riego CH1 Start Automatico
-#  sequence:
-#    - service: timer.start
-#      data_template:
-#        entity_id: timer.riego_bonsais_ch1
-#        duration: '{{ states.sensor.riego_bonsais_ch1_duracion_planificada.state}}'
-#    - service: switch.turn_on
-#      entity_id: switch.esphome_4ch_sw2_relay_1
-
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
@@ -1371,7 +1356,7 @@ piscina_depuradora_off:
 lavadora_switch_off:
   alias: Lavadora Switch Off
   sequence:
-    - delay: 00:00:05
+    - delay: 00:00:02
 
     - condition: template
       value_template: '{{ as_timestamp(states.binary_sensor.esphome_pow_sw2_lavadora_warning.last_changed) - as_timestamp(states.binary_sensor.esphome_pow_sw2_lavadora_lavando.last_changed) < 300 }}'
