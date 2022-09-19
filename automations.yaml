@@ -1752,7 +1752,7 @@
 # SENSOR:  input_boolean.riego_interruptor_global
 #
 - id: S18
-  alias: 'S18 Control Interruptor General Riego'
+  alias: 'S18 Control Interruptor Generaºl Riego'
   mode: restart
   trigger:
     - platform: time

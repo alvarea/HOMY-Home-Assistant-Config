@@ -693,6 +693,8 @@
         # states('sensor.humedad_entrada_ly03')|int >= 50
         # states('sensor.temperatura_entrada_ly03')|int >= 35
         #
+        # PREVISION DE LLUVIA EN LA ZONA
+        #
         #           AYER    HOY     MAÑANA
         #           DIA-1   DIA+0   DIA+1     RIEGO
         #  LLUEVE   0       0       0         1

@@ -792,6 +792,31 @@
         value_template: "{{state_attr('climate.aa_estudio','swing_mode') }}"
 
       #
+      # AEMET PREVISION METEREOLOGICA
+      #
+      # aemet_prevision_tiempo_dia0:
+      #  # rain, snow, sleet
+      #  friendly_name: 'Previsión Tiempo Hoy'
+      #  icon_template: mdi:weather
+      #  value_template: states('sensor.dark_sky_icon')
+
+      # TARJETA VERTICAL PRONOSTICO
+      # - entity: sensor.aemet_condition = weather.aemet_daily
+
+      # - entity: sensor.aemet_rain
+      # - entity: sensor.aemet_rain_probability
+      # - entity: sensor.aemet_snow
+
+      # - entity: sensor.aemet_humidity
+      # - entity: sensor.aemet_storm_probability
+      # - entity: sensor.aemet_snow_probability
+
+      # OTROS SENSORES DISPONIBLEs
+      # - entity: sensor.aemet_daily_forecast_condition
+      # - entity: sensor.aemet_daily_forecast_precipitation_probability
+      # - sensor.aemet_daily_forecast_temperature_low
+      # - sensor.aemet_daily_forecast_temperature
+      #
       # Predicción Metereologica AEMET
       #
       # Conversion Fecha datetime a formato DiaSemana, DD-MM
@@ -810,6 +835,55 @@
           {% elif is_state('sensor.aemet_icono_0d','partlycloudy') %} mdi:weather-partly-cloudy
           {% elif is_state('sensor.aemet_icono_0d','nightpartlycloudy') %} mdi:weather-night-partly-cloudy
           {% elif is_state('sensor.aemet_icono_0d','sunny') %} mdi:weather-sunny
+          {% else %} mdi:sun-wireless
+          {% endif %}
+
+      aemet_hoy:
+        friendly_name: "Tiempo Hoy"
+        value_template: >-
+          {% if is_state('sensor.aemet_condition','rainy') %} Lluvia
+          {% elif is_state('sensor.aemet_condition','weather-partly-rainy') %} Lluvia Parcial
+          {% elif is_state('sensor.aemet_condition','lightning') %} Tormenta
+          {% elif is_state('sensor.aemet_condition','cloudy') %} Nublado
+          {% elif is_state('sensor.aemet_condition','partlycloudy') %} Nublado Parcial
+          {% elif is_state('sensor.aemet_condition','nightpartlycloudy') %} Nublado
+          {% elif is_state('sensor.aemet_condition','sunny') %} Soleado
+          {% else %} Desconocido
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.aemet_condition','rainy') %} mdi:weather-rainy
+          {% elif is_state('sensor.aemet_condition','weather-partly-rainy') %} mdi:weather-partly-rainy
+          {% elif is_state('sensor.aemet_condition','lightning') %} mdi:weather-lightning
+          {% elif is_state('sensor.aemet_condition','cloudy') %} mdi:weather-cloudy
+          {% elif is_state('sensor.aemet_condition','partlycloudy') %} mdi:weather-partly-cloudy
+          {% elif is_state('sensor.aemet_condition','nightpartlycloudy') %} mdi:weather-night-partly-cloudy
+          {% elif is_state('sensor.aemet_condition','sunny') %} mdi:weather-sunny
+          {% else %} Desconocido
+          {% endif %}
+
+      dark_sky_hoy:
+        friendly_name: "Tiempo Hoy"
+        value_template: >-
+          {% if is_state('sensor.dark_sky_icon','rain') %} Lluvio
+          {% elif is_state('sensor.dark_sky_icon','partly-rainy') %} Lluvia Parcial
+          {% elif is_state('sensor.dark_sky_icon','lightning') %} Tormenta
+          {% elif is_state('sensor.dark_sky_icon','cloudy') %} Nuboso
+          {% elif is_state('sensor.dark_sky_icon','partly-cloudy-day') %} Nuboso Parcial
+          {% elif is_state('sensor.dark_sky_icon','night-partly-cloudy') %} Nuboso Parcial
+          {% elif is_state('sensor.dark_sky_icon','clear-night') %} Despejado
+          {% elif is_state('sensor.dark_sky_icon','clear-day') %} Despejado
+          {% else %} Desconocido
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.dark_sky_icon','rainy') %} mdi:weather-rainy
+          {% elif is_state('sensor.dark_sky_icon','partly-rainy') %} mdi:weather-partly-rainy
+          {% elif is_state('sensor.dark_sky_icon','lightning') %} mdi:weather-lightning
+          {% elif is_state('sensor.dark_sky_icon','cloudy') %} mdi:weather-cloudy
+          {% elif is_state('sensor.dark_sky_icon','partly-cloudy-day') %} mdi:weather-partly-cloudy
+          {% elif is_state('sensor.dark_sky_icon','clear-night') %} mdi:weather-night
+          {% elif is_state('sensor.dark_sky_icon','night-partly-cloudy') %} mdi:weather-night-partly-cloudy
+          {% elif is_state('sensor.dark_sky_icon','sunny') %} mdi:weather-sunny
+          {% elif is_state('sensor.dark_sky_icon','clear-day') %} mdi:weather-sunny
           {% else %} mdi:sun-wireless
           {% endif %}
 
