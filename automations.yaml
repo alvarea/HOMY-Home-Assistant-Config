@@ -1710,22 +1710,6 @@
       from: 'off'
       to: 'on'
   action:
-    - service: script.alexa_secuencia
-      data_template:
-        sonido: "{{ states('input_select.alarma_sonido_armado') }}"
-        repeticion: 1
-        voz: >
-          {% if states.sensor.aemet_condition.state | string == 'sunny' %}
-            "Buenas soy JOMI, el lavado ha terminado, el tiempo está soleado y la probabilidad de lluvia es del "  
-             {{ states.sensor.aemet_lluvia_0d.state }} " por ciento. Se puede tender fuera sin problemas."
-          {% elif (states.sensor.aemet_condition.state | string == 'rainy' or states.sensor.aemet_condition.state | string == 'partlycloudy')
-                and states.sensor.aemet_lluvia_0d.state|int > 50 %}
-            "Buenas soy JOMI, el lavado ya ha terminado, pero recomiendo usar la secadora, está nublado y hay una probabilidad de lluvia del " 
-            {{ states.sensor.aemet_lluvia_0d.state }} " por ciento."
-          {% else  %}
-            "Buenas soy JOMI, el lavado ha terminado, pero antes de tender revisa la previsión del tiempo. En estos momentos hay un " 
-             {{ states.sensor.aemet_lluvia_0d.state }} " por ciento de que llueva".
-          {% endif %}
     - service: script.lavadora_switch_off
 
 #

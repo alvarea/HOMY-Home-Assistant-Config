@@ -1363,6 +1363,26 @@ lavadora_switch_off:
 
     - service: switch.turn_off
       entity_id: switch.esphome_pow_sw2
+    
+    - service: script.alexa_secuencia
+      data_template:
+        sonido: "{{ states('input_select.alarma_sonido_armado') }}"
+        repeticion: 1
+        voz: >
+          {% if states.sensor.aemet_condition.state | string == 'sunny' 
+            %}
+            "Hola, el lavado ha terminado, el tiempo está soleado. Se puede tender fuera sin problemas."
+          {% elif (states.sensor.aemet_condition.state | string == 'rainy' ) 
+            %}
+            "Hola, el lavado ya ha terminado, pero tiene pinta de llover y recomiendo usar la secadora."
+          {% elif (states.sensor.aemet_condition.state | string == 'partlycloudy'
+                or states.sensor.aemet_condition.state | string == 'cloudy')
+            %}
+            "Hola, el lavado ya ha terminado, pero está nublado, revisa el tiempo antes de tender fuera."
+          {% else  %}
+            "Hola, el lavado ha terminado, pero antes de tender revisa la previsión del tiempo."
+          {% endif %}
+
 
     # Si la diferencia de hora ultimo cambio entre Warning y Lavando < 5' => TRUE => CONTINUA
     #

@@ -1042,3 +1042,26 @@
           {% if is_state('input_boolean.estudio_persiana_mode_up','on') %} window-shutter-alert
           {% else %} window-shutter
           {% endif %}
+
+      #
+      # CONTROL LAVADORA
+      #
+      lavadora__inicio_lavado:
+        friendly_name: Persiana Estudio Modo 
+        value_template: >-
+          {% if states.binary_sensor.esphome_pow_sw2_lavadora_lavando.last_changed is not none %} 
+            {{ as_timestamp(states.binary_sensor.esphome_pow_sw2_lavadora_lavando.last_changed) | timestamp_custom('%H:%M', False)}}
+          {% else %} 
+            none
+          {% endif %}
+        icon_template: mdi:washing-machine-alert
+
+      lavadora_warning_fin_lavado:
+        friendly_name: Persiana Estudio Modo 
+        value_template: >-
+          {% if states.binary_sensor.esphome_pow_sw2_lavadora_warning.last_changed is not none %} 
+            {{ as_timestamp(states.binary_sensor.esphome_pow_sw2_lavadora_warning.last_changed) | timestamp_custom('%H:%M', False)}}
+          {% else %} 
+            none
+          {% endif %}
+        icon_template: mdi:washing-machine-off
