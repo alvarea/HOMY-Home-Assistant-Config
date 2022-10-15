@@ -298,11 +298,11 @@ void setup() {
   //   restore_mode: RESTORE_DEFAULT_OFF
   //   interlock_wait_time: 0ms
   gpio_gpioswitch = new gpio::GPIOSwitch();
-  gpio_gpioswitch->set_component_source("gpio.switch");
-  App.register_component(gpio_gpioswitch);
   App.register_switch(gpio_gpioswitch);
   gpio_gpioswitch->set_name("esphome 4ch sw2 relay 1");
   gpio_gpioswitch->set_disabled_by_default(false);
+  gpio_gpioswitch->set_component_source("gpio.switch");
+  App.register_component(gpio_gpioswitch);
   esphome_esp8266_esp8266gpiopin_5 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_5->set_pin(12);
   esphome_esp8266_esp8266gpiopin_5->set_inverted(false);
@@ -328,11 +328,11 @@ void setup() {
   //   restore_mode: RESTORE_DEFAULT_OFF
   //   interlock_wait_time: 0ms
   gpio_gpioswitch_2 = new gpio::GPIOSwitch();
-  gpio_gpioswitch_2->set_component_source("gpio.switch");
-  App.register_component(gpio_gpioswitch_2);
   App.register_switch(gpio_gpioswitch_2);
   gpio_gpioswitch_2->set_name("esphome 4ch sw2 relay 2");
   gpio_gpioswitch_2->set_disabled_by_default(false);
+  gpio_gpioswitch_2->set_component_source("gpio.switch");
+  App.register_component(gpio_gpioswitch_2);
   esphome_esp8266_esp8266gpiopin_6 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_6->set_pin(5);
   esphome_esp8266_esp8266gpiopin_6->set_inverted(false);
@@ -358,11 +358,11 @@ void setup() {
   //   restore_mode: RESTORE_DEFAULT_OFF
   //   interlock_wait_time: 0ms
   gpio_gpioswitch_3 = new gpio::GPIOSwitch();
-  gpio_gpioswitch_3->set_component_source("gpio.switch");
-  App.register_component(gpio_gpioswitch_3);
   App.register_switch(gpio_gpioswitch_3);
   gpio_gpioswitch_3->set_name("esphome 4ch sw2 relay 3");
   gpio_gpioswitch_3->set_disabled_by_default(false);
+  gpio_gpioswitch_3->set_component_source("gpio.switch");
+  App.register_component(gpio_gpioswitch_3);
   esphome_esp8266_esp8266gpiopin_7 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_7->set_pin(4);
   esphome_esp8266_esp8266gpiopin_7->set_inverted(false);
@@ -388,11 +388,11 @@ void setup() {
   //   restore_mode: RESTORE_DEFAULT_OFF
   //   interlock_wait_time: 0ms
   gpio_gpioswitch_4 = new gpio::GPIOSwitch();
-  gpio_gpioswitch_4->set_component_source("gpio.switch");
-  App.register_component(gpio_gpioswitch_4);
   App.register_switch(gpio_gpioswitch_4);
   gpio_gpioswitch_4->set_name("esphome 4ch sw2 relay 4");
   gpio_gpioswitch_4->set_disabled_by_default(false);
+  gpio_gpioswitch_4->set_component_source("gpio.switch");
+  App.register_component(gpio_gpioswitch_4);
   esphome_esp8266_esp8266gpiopin_8 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_8->set_pin(15);
   esphome_esp8266_esp8266gpiopin_8->set_inverted(false);

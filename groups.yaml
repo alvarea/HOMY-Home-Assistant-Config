@@ -62,11 +62,17 @@ alarma_sensores_luz_grp:
     - sensor.illumination_158d0001e464a6
     - sensor.illumination_158d0001e05661
 
+luces_salon_grp:
+  name: Grupo Luces Salon Non-Hue
+  entities:
+    - light.wled_salon_tv         # LED Estudio TV
+
 luces_estudio_grp:
   name: Grupo Luces Estudio Non-Hue
   entities:
     - light.estudio_beer           # Luz Cuadro Beer
     - light.estudio_lamparita      # Luz Lamparita
+    - light.wled_estudio_tv        # LED Estudio TV
 
 luces_entrada_grp:
   name: Grupo Luces Entrada

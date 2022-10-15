@@ -750,13 +750,16 @@
         value_template: >
           {{
           ((
+           states('sensor.ly1_desk_setup_temperatura')|float(0) + 
+           states('sensor.ly2_estudio_temperatura')|float(0) + 
            states('sensor.temperature_158d00022b65ff')|float(0) + 
            states('sensor.temperature_158d0002d79546')|float(0) +
            states('sensor.temperature_158d00022c6a47')|float(0) +
            states('sensor.temperature_158d0002e97092')|float(0) +
            states('sensor.temperature_158d00025efda4')|float(0) 
-          ) / 5)|round(1)
+          ) / 7)|round(1)
           }}
+          
       # hvac_modes: off, heat, dry, cool, fan_only, heat_cool
       melcloud_estudio_state:
         friendly_name: 'AC/Estudio'
@@ -1046,22 +1049,33 @@
       #
       # CONTROL LAVADORA
       #
-      lavadora__inicio_lavado:
-        friendly_name: Persiana Estudio Modo 
+      lavadora_inicio_lavado:
+        friendly_name: Lavadora Inicio Lavado
         value_template: >-
-          {% if states.binary_sensor.esphome_pow_sw2_lavadora_lavando.last_changed is not none %} 
-            {{ as_timestamp(states.binary_sensor.esphome_pow_sw2_lavadora_lavando.last_changed) | timestamp_custom('%H:%M', False)}}
+          {% if states.input_datetime.lavadora_inicio_lavado.state is not none %} 
+            {{ states.input_datetime.lavadora_inicio_lavado.state }}
           {% else %} 
-            none
+            {{ states.input_datetime.lavadora_inicio_lavado.attributes.timestamp | timestamp_custom("%H:%M")}}
           {% endif %}
         icon_template: mdi:washing-machine-alert
 
-      lavadora_warning_fin_lavado:
-        friendly_name: Persiana Estudio Modo 
+      lavadora_fin_lavado:
+        friendly_name: Lavadora Fin Lavado
         value_template: >-
-          {% if states.binary_sensor.esphome_pow_sw2_lavadora_warning.last_changed is not none %} 
-            {{ as_timestamp(states.binary_sensor.esphome_pow_sw2_lavadora_warning.last_changed) | timestamp_custom('%H:%M', False)}}
+          {% if states.input_datetime.lavadora_fin_lavado.state is not none %} 
+            {{ states.input_datetime.lavadora_fin_lavado.state }}
           {% else %} 
-            none
+            {{ states.input_datetime.lavadora_fin_lavado.attributes.timestamp | timestamp_custom("%H:%M")}}
           {% endif %}
         icon_template: mdi:washing-machine-off
+
+      lavadora_duracion_lavado:
+        friendly_name: 'Lavadora Duración Lavado)'
+        icon_template: "{{ 'mdi:timer-sand' if states('sensor.lavadora_duracion_lavado') is not none }}"
+        value_template: >-
+          {% if states.sensor.lavadora_fin_lavado.state is none %} 
+            none
+          {% else %} 
+            '{{ "{:}".format((states.input_datetime.lavadora_fin_lavado.attributes.timestamp -  states.input_datetime.lavadora_inicio_lavado.attributes.timestamp)/60)|int }}''
+          {% endif %}
+

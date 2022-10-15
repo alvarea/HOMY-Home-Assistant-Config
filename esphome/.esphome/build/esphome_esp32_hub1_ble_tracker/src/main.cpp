@@ -35,10 +35,6 @@ atc_mithermometer::ATCMiThermometer *atc_mithermometer_atcmithermometer;
 sensor::Sensor *sensor_sensor_13;
 sensor::Sensor *sensor_sensor_14;
 sensor::Sensor *sensor_sensor_15;
-atc_mithermometer::ATCMiThermometer *atc_mithermometer_atcmithermometer_2;
-sensor::Sensor *sensor_sensor_16;
-sensor::Sensor *sensor_sensor_17;
-sensor::Sensor *sensor_sensor_18;
 xiaomi_ble::XiaomiListener *xiaomi_ble_xiaomilistener;
 #define yield() esphome::yield()
 #define millis() esphome::millis()
@@ -136,6 +132,8 @@ void setup() {
   api_apiserver->set_password("");
   api_apiserver->set_reboot_timeout(900000);
   // sensor:
+  // substitutions:
+  //   device_name: esphome_esp32_hub1_ble_tracker
   // esp32:
   //   board: nodemcu-32s
   //   framework:
@@ -153,14 +151,14 @@ void setup() {
   App.register_component(preferences_intervalsyncer);
   // binary_sensor.status:
   //   platform: status
-  //   name: esphome esp32 h1 status
+  //   name: esphome_esp32_hub1_ble_tracker_status
   //   disabled_by_default: false
   //   id: status_statusbinarysensor
   //   entity_category: diagnostic
   //   device_class: connectivity
   status_statusbinarysensor = new status::StatusBinarySensor();
   App.register_binary_sensor(status_statusbinarysensor);
-  status_statusbinarysensor->set_name("esphome esp32 h1 status");
+  status_statusbinarysensor->set_name("esphome_esp32_hub1_ble_tracker_status");
   status_statusbinarysensor->set_disabled_by_default(false);
   status_statusbinarysensor->set_entity_category(::ENTITY_CATEGORY_DIAGNOSTIC);
   status_statusbinarysensor->set_device_class("connectivity");
@@ -173,6 +171,7 @@ void setup() {
   //     interval: 320ms
   //     window: 30ms
   //     active: true
+  //     continuous: true
   esp32_ble_tracker_esp32bletracker = new esp32_ble_tracker::ESP32BLETracker();
   esp32_ble_tracker_esp32bletracker->set_component_source("esp32_ble_tracker");
   App.register_component(esp32_ble_tracker_esp32bletracker);
@@ -180,6 +179,7 @@ void setup() {
   esp32_ble_tracker_esp32bletracker->set_scan_interval(512);
   esp32_ble_tracker_esp32bletracker->set_scan_window(48);
   esp32_ble_tracker_esp32bletracker->set_scan_active(true);
+  esp32_ble_tracker_esp32bletracker->set_scan_continuous(true);
   // sensor.xiaomi_hhccjcy01:
   //   platform: xiaomi_hhccjcy01
   //   mac_address: C4:7C:8D:67:C1:9E
@@ -440,9 +440,9 @@ void setup() {
   xiaomi_hhccjcy01_xiaomihhccjcy01_3->set_conductivity(sensor_sensor_12);
   // sensor.atc_mithermometer:
   //   platform: atc_mithermometer
-  //   mac_address: A4:C1:38:6B:AA:C8
+  //   mac_address: A4:C1:38:E8:02:EF
   //   temperature:
-  //     name: LY2 Entrada Interior Temperatura
+  //     name: LY3 Entrada Exterior Temperatura
   //     disabled_by_default: false
   //     id: sensor_sensor_13
   //     force_update: false
@@ -451,7 +451,7 @@ void setup() {
   //     device_class: temperature
   //     state_class: measurement
   //   humidity:
-  //     name: LY2 Entrada Interior Humedad
+  //     name: LY3 Entrada Exterior Humedad
   //     disabled_by_default: false
   //     id: sensor_sensor_14
   //     force_update: false
@@ -459,14 +459,14 @@ void setup() {
   //     accuracy_decimals: 0
   //     device_class: humidity
   //     state_class: measurement
-  //   battery_voltage:
-  //     name: LY2 Entrada Interior Batería
+  //   battery_level:
+  //     name: LY3 Entrada Exterior Bateria
   //     disabled_by_default: false
   //     id: sensor_sensor_15
   //     force_update: false
-  //     unit_of_measurement: V
-  //     accuracy_decimals: 3
-  //     device_class: voltage
+  //     unit_of_measurement: '%'
+  //     accuracy_decimals: 0
+  //     device_class: battery
   //     state_class: measurement
   //     entity_category: diagnostic
   //   id: atc_mithermometer_atcmithermometer
@@ -475,10 +475,10 @@ void setup() {
   atc_mithermometer_atcmithermometer->set_component_source("atc_mithermometer.sensor");
   App.register_component(atc_mithermometer_atcmithermometer);
   esp32_ble_tracker_esp32bletracker->register_listener(atc_mithermometer_atcmithermometer);
-  atc_mithermometer_atcmithermometer->set_address(0xA4C1386BAAC8ULL);
+  atc_mithermometer_atcmithermometer->set_address(0xA4C138E802EFULL);
   sensor_sensor_13 = new sensor::Sensor();
   App.register_sensor(sensor_sensor_13);
-  sensor_sensor_13->set_name("LY2 Entrada Interior Temperatura");
+  sensor_sensor_13->set_name("LY3 Entrada Exterior Temperatura");
   sensor_sensor_13->set_disabled_by_default(false);
   sensor_sensor_13->set_device_class("temperature");
   sensor_sensor_13->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
@@ -488,7 +488,7 @@ void setup() {
   atc_mithermometer_atcmithermometer->set_temperature(sensor_sensor_13);
   sensor_sensor_14 = new sensor::Sensor();
   App.register_sensor(sensor_sensor_14);
-  sensor_sensor_14->set_name("LY2 Entrada Interior Humedad");
+  sensor_sensor_14->set_name("LY3 Entrada Exterior Humedad");
   sensor_sensor_14->set_disabled_by_default(false);
   sensor_sensor_14->set_device_class("humidity");
   sensor_sensor_14->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
@@ -498,84 +498,15 @@ void setup() {
   atc_mithermometer_atcmithermometer->set_humidity(sensor_sensor_14);
   sensor_sensor_15 = new sensor::Sensor();
   App.register_sensor(sensor_sensor_15);
-  sensor_sensor_15->set_name("LY2 Entrada Interior Bater\303\255a");
+  sensor_sensor_15->set_name("LY3 Entrada Exterior Bateria");
   sensor_sensor_15->set_disabled_by_default(false);
   sensor_sensor_15->set_entity_category(::ENTITY_CATEGORY_DIAGNOSTIC);
-  sensor_sensor_15->set_device_class("voltage");
+  sensor_sensor_15->set_device_class("battery");
   sensor_sensor_15->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
-  sensor_sensor_15->set_unit_of_measurement("V");
-  sensor_sensor_15->set_accuracy_decimals(3);
+  sensor_sensor_15->set_unit_of_measurement("%");
+  sensor_sensor_15->set_accuracy_decimals(0);
   sensor_sensor_15->set_force_update(false);
-  atc_mithermometer_atcmithermometer->set_battery_voltage(sensor_sensor_15);
-  // sensor.atc_mithermometer:
-  //   platform: atc_mithermometer
-  //   mac_address: A4:C1:38:E8:02:EF
-  //   temperature:
-  //     name: LY3 Entrada Exterior Temperatura
-  //     disabled_by_default: false
-  //     id: sensor_sensor_16
-  //     force_update: false
-  //     unit_of_measurement: °C
-  //     accuracy_decimals: 1
-  //     device_class: temperature
-  //     state_class: measurement
-  //   humidity:
-  //     name: LY3 Entrada Exterior Humedad
-  //     disabled_by_default: false
-  //     id: sensor_sensor_17
-  //     force_update: false
-  //     unit_of_measurement: '%'
-  //     accuracy_decimals: 0
-  //     device_class: humidity
-  //     state_class: measurement
-  //   battery_level:
-  //     name: LY3 Entrada Exterior Bateria
-  //     disabled_by_default: false
-  //     id: sensor_sensor_18
-  //     force_update: false
-  //     unit_of_measurement: '%'
-  //     accuracy_decimals: 0
-  //     device_class: battery
-  //     state_class: measurement
-  //     entity_category: diagnostic
-  //   id: atc_mithermometer_atcmithermometer_2
-  //   esp32_ble_id: esp32_ble_tracker_esp32bletracker
-  atc_mithermometer_atcmithermometer_2 = new atc_mithermometer::ATCMiThermometer();
-  atc_mithermometer_atcmithermometer_2->set_component_source("atc_mithermometer.sensor");
-  App.register_component(atc_mithermometer_atcmithermometer_2);
-  esp32_ble_tracker_esp32bletracker->register_listener(atc_mithermometer_atcmithermometer_2);
-  atc_mithermometer_atcmithermometer_2->set_address(0xA4C138E802EFULL);
-  sensor_sensor_16 = new sensor::Sensor();
-  App.register_sensor(sensor_sensor_16);
-  sensor_sensor_16->set_name("LY3 Entrada Exterior Temperatura");
-  sensor_sensor_16->set_disabled_by_default(false);
-  sensor_sensor_16->set_device_class("temperature");
-  sensor_sensor_16->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
-  sensor_sensor_16->set_unit_of_measurement("\302\260C");
-  sensor_sensor_16->set_accuracy_decimals(1);
-  sensor_sensor_16->set_force_update(false);
-  atc_mithermometer_atcmithermometer_2->set_temperature(sensor_sensor_16);
-  sensor_sensor_17 = new sensor::Sensor();
-  App.register_sensor(sensor_sensor_17);
-  sensor_sensor_17->set_name("LY3 Entrada Exterior Humedad");
-  sensor_sensor_17->set_disabled_by_default(false);
-  sensor_sensor_17->set_device_class("humidity");
-  sensor_sensor_17->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
-  sensor_sensor_17->set_unit_of_measurement("%");
-  sensor_sensor_17->set_accuracy_decimals(0);
-  sensor_sensor_17->set_force_update(false);
-  atc_mithermometer_atcmithermometer_2->set_humidity(sensor_sensor_17);
-  sensor_sensor_18 = new sensor::Sensor();
-  App.register_sensor(sensor_sensor_18);
-  sensor_sensor_18->set_name("LY3 Entrada Exterior Bateria");
-  sensor_sensor_18->set_disabled_by_default(false);
-  sensor_sensor_18->set_entity_category(::ENTITY_CATEGORY_DIAGNOSTIC);
-  sensor_sensor_18->set_device_class("battery");
-  sensor_sensor_18->set_state_class(sensor::STATE_CLASS_MEASUREMENT);
-  sensor_sensor_18->set_unit_of_measurement("%");
-  sensor_sensor_18->set_accuracy_decimals(0);
-  sensor_sensor_18->set_force_update(false);
-  atc_mithermometer_atcmithermometer_2->set_battery_level(sensor_sensor_18);
+  atc_mithermometer_atcmithermometer->set_battery_level(sensor_sensor_15);
   // network:
   //   {}
   // socket:

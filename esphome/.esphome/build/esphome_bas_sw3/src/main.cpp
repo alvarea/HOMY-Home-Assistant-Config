@@ -198,18 +198,18 @@ void setup() {
   //       open_drain: false
   //       pullup: false
   //       pulldown: false
-  //     inverted: false
   //     id: esphome_esp8266_esp8266gpiopin_2
+  //     inverted: false
   //   disabled_by_default: false
   //   id: gpio_gpioswitch
   //   restore_mode: RESTORE_DEFAULT_OFF
   //   interlock_wait_time: 0ms
   gpio_gpioswitch = new gpio::GPIOSwitch();
-  gpio_gpioswitch->set_component_source("gpio.switch");
-  App.register_component(gpio_gpioswitch);
   App.register_switch(gpio_gpioswitch);
   gpio_gpioswitch->set_name("esphome bas sw3");
   gpio_gpioswitch->set_disabled_by_default(false);
+  gpio_gpioswitch->set_component_source("gpio.switch");
+  App.register_component(gpio_gpioswitch);
   esphome_esp8266_esp8266gpiopin_2 = new esphome::esp8266::ESP8266GPIOPin();
   esphome_esp8266_esp8266gpiopin_2->set_pin(12);
   esphome_esp8266_esp8266gpiopin_2->set_inverted(false);

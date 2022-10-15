@@ -1,8 +1,12 @@
 #
-# ESPHOME - ESP32S HUB1 - BLUETOOTH BLE ESTUDIO
+# ESPHOME - ESP32S HUB2 - BLUETOOTH BLE ESTUDIO
 #
+
+substitutions:
+  device_name: esphome_esp32_hub2_ble
+
 esphome:
-  name: esphome_esp32_hub2_ble
+  name: ${device_name}
   platform: ESP32
   board: nodemcu-32s
 
@@ -21,7 +25,7 @@ logger:
 
 binary_sensor:
   - platform: status
-    name: "esphome esp32 hub2 status"
+    name: ${device_name}_status
 
 ota:
 
@@ -42,6 +46,17 @@ sensor:
     #  name: "LY1 Desk_Setup Batería (V)"
     # signal_strength:
     #  name: "LY1 Desk_Setup Señal"
+
+
+  # LY02 Entrada Interior
+  - platform: atc_mithermometer
+    mac_address: "A4:C1:38:6B:AA:C8"
+    temperature:
+      name: "LY2 Estudio Temperatura"
+    humidity:
+      name: "LY2 Estudio Humedad"
+    battery_level:
+      name: "LY2 Estudio Batería"
 
 #  Configuración Inicial con el Firmware Orignal de Xiaomi.
 #  - platform: xiaomi_lywsd03mmc

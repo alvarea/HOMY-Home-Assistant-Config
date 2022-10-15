@@ -2,7 +2,7 @@
   "storage_version": 1,
   "name": "esphome_bas_sw2",
   "comment": null,
-  "esphome_version": "2022.8.0",
+  "esphome_version": "2022.9.4",
   "src_version": 1,
   "address": "192.168.0.32",
   "web_port": null,

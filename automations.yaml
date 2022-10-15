@@ -3,8 +3,8 @@
 # HOMY - HOME ASSISTANT - ALVAREA 2020                                        #
 #                                                                             #
 #-----------------------------------------------------------------------------#
-# TEMPLATING JINJA2:  https://jinja.palletsprojects.com/en/master/templates
-
+# TEMPLATING JINJA2:  https://jinja.palletsprojects.com/en/master/templates   #
+#                                                                             #
 #-----------------------------------------------------------------------------#
 #                                                                             #
 # ARRANQUE/PARADA DEL SISTEMA                                                 #
@@ -59,8 +59,8 @@
   trigger:
     - platform: time
       at:
-        - '09:01:00'
-        - '00:01:00'
+        - '08:00:00'
+        - '00:00:00'
   action:
     # Establece Volumnen Alexa Entrada/Estudio/Dormitorio según hora del día/noche
     - service: script.alexa_entrada_set_volumen
@@ -508,7 +508,7 @@
   trigger:
     - platform: sun
       event: sunrise
-      offset: "-01:00:00"
+      offset: "-00:30:00"
   condition:
     condition: and
     conditions:
@@ -638,22 +638,17 @@
         after: '00:30:00'
       - condition: sun
         before: sunrise
-        before_offset: "-00:30:00"
       - condition: state
-        entity_id: binary_sensor.family_all_home
+        entity_id: binary_sensor.family_any_home
         state: 'on'
-      #- condition: numeric_state
-      #  entity_id: sensor.baye_probability_aaf
-      #  above: 90
-      # antes del amanecer
   action:
     # Notifica Evento
     - service: script.notifica_evento
       data:
         titulo: '*FAMILY HOME*'
         mensaje: >
-          >>> MADRUGADA TODOS EN CASA. EN 30' AUTO ARMADO HOME
-    - delay: '00:30:00'
+          >>> MADRUGADA TODOS EN CASA. EN 5' AUTO ARMADO HOME
+    - delay: '00:00:05'
     - service: alarm_control_panel.alarm_arm_home
       entity_id: alarm_control_panel.ha
 
@@ -1693,8 +1688,8 @@
     - service: switch.toggle
       entity_id: switch.esphome_pow_sw2
 
-- id: S17
-  alias: 'S17 Sonoff POW Lavadora Led'
+- id: S16b
+  alias: 'S16b Sonoff POW Lavadora Led'
   trigger:
     - platform: state
       entity_id: binary_sensor.esphome_pow_sw2_lavadora_lavando
@@ -1702,15 +1697,33 @@
     - service: light.toggle
       entity_id: light.esphome_pow_sw2_led
 
-- id: S17c
-  alias: 'S17c Sonoff POW Lavadora Warning off'
+- id: S16c
+  alias: 'Auto-Apagado Warning Lavadora (S16c)'
   trigger:
     - platform: state
       entity_id: binary_sensor.esphome_pow_sw2_lavadora_warning
       from: 'off'
       to: 'on'
   action:
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.lavadora_fin_lavado
+      data:
+        time: '{{ now().strftime("%H:%M") }}'
+    # Llama al script de apagado de Sonoof POW si viene de un lavado
     - service: script.lavadora_switch_off
+
+- id: S16d
+  alias: 'S16d Lavadora Hora Inicio'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.esphome_pow_sw2_lavadora_lavando
+      from: 'off'
+      to: 'on'
+  action:
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.lavadora_inicio_lavado
+      data:
+        time: '{{ now().strftime("%H:%M") }}'
 
 #
 # ESPHOME 4CH-R2 SW2 RIEGO BONSAIS

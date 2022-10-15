@@ -280,10 +280,11 @@ alexa_dormitorio_set_volumen:
   sequence:
     # Almacena y Ajusta el Volumen Alexa Dormitorio según hora
     - service: input_number.set_value
-      data_template:
+      target:
         entity_id: input_number.alexa_dormitorio_volumen_nuevo
+      data:
         value: >
-          {% if now().hour >= 0 and now().hour <= 9 %}
+          {% if now().hour >= 0 and now().hour <= 7 %}
             {{ states('input_number.alexa_dormitorio_volumen_anuncio_noc')|float }}
           {% else %}
             {{ states('input_number.alexa_dormitorio_volumen_anuncio_dia')|float }}
@@ -303,10 +304,11 @@ alexa_entrada_set_volumen:
   sequence:
     # Almacena y Ajusta el Volumen Alexa ENTRADA según hora
     - service: input_number.set_value
-      data_template:
+      target:
         entity_id: input_number.alexa_entrada_volumen_nuevo
+      data:
         value: >
-          {% if now().hour >= 0 and now().hour <= 9 %}
+          {% if now().hour >= 0 and now().hour <= 7 %}
             {{ states('input_number.alexa_entrada_volumen_anuncio_noc')|float }}
           {% else %}
             {{ states('input_number.alexa_entrada_volumen_anuncio_dia')|float }}
@@ -324,10 +326,11 @@ alexa_estudio_set_volumen:
   sequence:
     # Almacena y Ajusta el Volumen Alexa ESTUDIO según hora
     - service: input_number.set_value
-      data_template:
+      target:
         entity_id: input_number.alexa_estudio_volumen_nuevo
+      data:
         value: >
-          {% if now().hour >= 0 and now().hour <= 9 %}
+          {% if now().hour >= 0 and now().hour <= 7 %}
             {{ states('input_number.alexa_estudio_volumen_anuncio_noc')|float }}
           {% else %}
             {{ states('input_number.alexa_estudio_volumen_anuncio_dia')|float }}

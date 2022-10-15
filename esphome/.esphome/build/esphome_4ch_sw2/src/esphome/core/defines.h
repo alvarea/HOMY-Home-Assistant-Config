@@ -10,6 +10,7 @@
 #define USE_LIGHT
 #define USE_LOGGER
 #define USE_MDNS
+#define USE_OTA
 #define USE_SOCKET_IMPL_LWIP_TCP
 #define USE_SWITCH
 #define USE_WIFI
