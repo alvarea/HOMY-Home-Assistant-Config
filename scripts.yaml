@@ -1512,6 +1512,19 @@ blink_trigger_cam_porche:
         entity_id: camera.blink_porche
         filename: /share/blink_porche.jpg
 
+blink_trigger_cam_estudio:
+  alias: 'Blink Trigger Camera Estudio'
+  sequence:
+    - service: blink.trigger_camera
+      data:
+        entity_id: camera.blink_estudio
+    - delay: 00:00:05
+    - service: blink.blink_update
+    - service: camera.snapshot
+      data:
+        entity_id: camera.blink_estudio
+        filename: /share/blink_estudio.jpg
+        
 #-----------------------------------------------------------------------------#
 #                                                                             #
 # CONTROL PERSIANAS MATISMO                                                   #

@@ -124,14 +124,16 @@
   action:
     # Actualizacion imagen cámaras última hora.
     - service: script.blink_trigger_cam_hall
-    - delay: '00:00:30'
+    - delay: '00:00:10'
     - service: script.blink_trigger_cam_puerta_principal
-    - delay: '00:00:30'
+    - delay: '00:00:10'
     - service: script.blink_trigger_cam_puerta_garaje
-    - delay: '00:00:30'
+    - delay: '00:00:10'
     - service: script.blink_trigger_cam_piscina
-    - delay: '00:00:30'
+    - delay: '00:00:10'
     - service: script.blink_trigger_cam_porche
+    - delay: '00:00:10'
+    - service: script.blink_trigger_cam_estudio
 
 #-----------------------------------------------------------------------------#
 #                                                                             #
@@ -1136,13 +1138,13 @@
   mode: restart
   trigger:
     - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d000201dddb
+      entity_id: binary_sensor.aqara_puerta_estudio_armario
   action:
     - choose:
       # IF puerta cerrada => apaga Luz siempre
       - conditions:
         - condition: state
-          entity_id: binary_sensor.door_window_sensor_158d000201dddb
+          entity_id: binary_sensor.aqara_puerta_estudio_armario
           state: 'off' # CERRADO
         sequence:
           - service: light.turn_off

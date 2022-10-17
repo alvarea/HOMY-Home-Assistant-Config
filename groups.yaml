@@ -22,7 +22,8 @@ alarma_sirena_grp:
 alarma_sensores_perimetro_grp:
   name: Grupo Sensores Perímetro
   entities:
-    - binary_sensor.door_window_sensor_158d00022b393c       # Puerta Entrada
+    # - binary_sensor.door_window_sensor_158d00022b393c     # Puerta Entrada  
+    - binary_sensor.aqara_puerta_entrada_principal          # Puerta Entrada
     - binary_sensor.door_window_sensor_158d000201e2e7       # Puerta Salón
     - binary_sensor.door_window_sensor_158d000847effe       # Ventana M&D
     - binary_sensor.door_window_sensor_158d00020457e0       # Ventana Plancha
