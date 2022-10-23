@@ -7,10 +7,12 @@
       - 'date_time'
       - 'time'
 
-  - platform: uptime
-  #  unit_of_measurement: hours => deprecated.
-
-  - platform: moon
+# Configuring Uptime using YAML has been removed.
+# Your existing YAML configuration is not used by Home Assistant.
+# Remove the YAML configuration from your configuration.yaml file and restart Home Assistant to fix this issue.
+#  - platform: uptime
+#  - platform: moon
+#  - platform: season
 
 # UPS APC
 #  - platform: apcupsd
@@ -66,8 +68,6 @@
         arg: /
       - type: disk_free
         arg: /
-
-  - platform: season
 
   - platform: darksky
     api_key: !secret weather_apikey

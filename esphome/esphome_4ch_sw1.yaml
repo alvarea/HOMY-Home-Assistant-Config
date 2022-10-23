@@ -1,7 +1,7 @@
 #
 # ESPHOME SONOFF 4CH PRO - SW1 - CUADRO ELECTRICO lUCES JARDIN
 #
-esphomeyaml:
+esphome:
   name: esphome_4ch_sw1
   platform: ESP8266
   board: esp01_1m

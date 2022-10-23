@@ -1060,38 +1060,33 @@
         - light.esphome_s20_sw1_led
 
 - id: L09
-  alias: 'L09 Luces On Dormitorio Warning'
+  alias: 'L09 Luces On Pasillo Según Sensor'
   mode: restart
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0002ea1d0f       # Sensor Dormitorio
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d00022b393c  # Puerta Entrada
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001e637f6       # Sensor Exterior
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001e55903       # Sensor Entrada
+      entity_id: binary_sensor.hue_movimiento_pasillo
       to: 'on'
   condition:
     condition: and
     conditions:
-      # Dormitorio Warning F-Mode = on
-      - condition: state
-        entity_id: input_boolean.dormitorio_warning
-        state: 'on'
+      #- condition: sun
+      #  # after_offset: "-02:00:00"  ==> Horario Invierno GMT+1, en el amanecer -2h
+      #  # after_offset: "-00:30:00" ==> Horario Verano GMT+2, el amanecer -30m
       - condition: sun
         after: sunset
+        after_offset: "-02:00:00"
+      - condition: state
+        entity_id: light.luz_pasillo
+        state: 'off'
   action:
-    # Luces On
-    - service: script.luces_dormitorio_relax
-    - delay: '00:00:10'
+    - service: light.turn_on
+      entity_id: light.luz_pasillo
+    # Espera de 5'
+    - delay: '00:05:00'
+    # Luces Off + Led
     - service: light.turn_off
-      entity_id: light.dormitorio
-      data:
-        transition: 10
+      entity_id: 
+        - light.luz_pasillo
 
 - id: L10
   alias: 'L10 Luces On Estudio Según Sensor'
@@ -1158,6 +1153,39 @@
             - light.estudio_armario
             - light.esphome_s26_sw1_led
 
+- id: L12
+  alias: 'L12 Luces On Dormitorio Warning'
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002ea1d0f       # Sensor Dormitorio
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d00022b393c  # Puerta Entrada
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e637f6       # Sensor Exterior
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e55903       # Sensor Entrada
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      # Dormitorio Warning F-Mode = on
+      - condition: state
+        entity_id: input_boolean.dormitorio_warning
+        state: 'on'
+      - condition: sun
+        after: sunset
+  action:
+    # Luces On
+    - service: script.luces_dormitorio_relax
+    - delay: '00:00:10'
+    - service: light.turn_off
+      entity_id: light.dormitorio
+      data:
+        transition: 10
 #-----------------------------------------------------------------------------#
 #                                                                             #
 # REGLAS MAGIC CUBE                                                           #
@@ -1818,7 +1846,7 @@
         # ELIF
         - conditions:
           - condition: template
-            value_template: "{{ now().hour == 7 or now().hour == 21 and is_state('input_boolean.riego_interruptor_global','on')}}"
+            value_template: "{{ (now().hour == 7 or now().hour == 21) and is_state('input_boolean.riego_interruptor_global','on')}}"
           sequence:
             - service: switch.turn_on
               target:

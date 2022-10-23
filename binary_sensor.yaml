@@ -217,15 +217,16 @@
       #
       # CONTROL SENSORES PRESENCIA ALARMA AWAY
       #
-      #    - entity: binary_sensor.motion_sensor_158d0001e05661             name: Presencia Salón
-      #    - entity: binary_sensor.motion_sensor_158d0001e464a6             name: Presencia Estudio
-      #    - entity: binary_sensor.motion_sensor_158d0001e55903             name: Presencia Entrada Hall
-      #    - entity: binary_sensor.motion_sensor_158d0001e637f6             name: Presencia Entrada Exterior
-      #    - entity: binary_sensor.motion_sensor_158d0002ea1d0f             name: Presencia Dormitorio Principal
+      # Genera un binary_sensor nuevo a partir del sensor movimiento original en ZHA y un selector input_boolean  
+      # lo que permite desactivar en la pestaña configuración el sensor que esté dando problemas.
       #
-      alarma_sensor_presencia_salon:
+      # La alarma usa estos sensores en el grupo <group.alarma_sensores_presencia_interior_grp> durante el armado away.
+      #
+      #
+      # AQARA Movimiento Pasillo - ZHA PENDING
+      alarma_sensor_movimiento_salon:
         value_template: >-
-          {%  if is_state('input_boolean.alarma_sensor_presencia_salon','on')
+          {%  if is_state('input_boolean.alarma_sensor_movimiento_salon','on')
               and is_state('binary_sensor.motion_sensor_158d0001e05661','on')
           %}
             true
@@ -233,28 +234,29 @@
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('binary_sensor.alarma_sensor_presencia_salon','on') %} mdi:motion-sensor
+          {% if is_state('binary_sensor.alarma_sensor_movimiento_salon','on') %} mdi:motion-sensor
           {% else %} mdi:motion-sensor-off
           {% endif %}
 
-      alarma_sensor_presencia_estudio:
+      # AQARA Movimiento Pasillo - ZHA OK
+      alarma_sensor_movimiento_estudio:
         value_template: >-
-          {%  if is_state('input_boolean.alarma_sensor_presencia_estudio','on')
-              and is_state('binary_sensor.motion_sensor_158d0001e464a6','on')
+          {%  if is_state('input_boolean.alarma_sensor_movimiento_estudio','on')
+              and is_state('binary_sensor.aqara_movimiento_estudio','on')
           %}
             true
           {% else %}
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('binary_sensor.alarma_sensor_presencia_estudio','on') %} mdi:motion-sensor
+          {% if is_state('binary_sensor.alarma_sensor_movimiento_estudio','on') %} mdi:motion-sensor
           {% else %} mdi:motion-sensor-off
           {% endif %}
 
-
-      alarma_sensor_presencia_entrada_hall:
+      # AQARA Movimiento Entrada - ZHA PENDING
+      alarma_sensor_movimiento_entrada_hall:
         value_template: >-
-          {%  if is_state('input_boolean.alarma_sensor_presencia_entrada_hall','on')
+          {%  if is_state('input_boolean.alarma_sensor_movimiento_entrada_hall','on')
               and is_state('binary_sensor.motion_sensor_158d0001e55903','on')
           %}
             true
@@ -262,13 +264,14 @@
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('binary_sensor.alarma_sensor_presencia_entrada_hall','on') %} mdi:motion-sensor
+          {% if is_state('binary_sensor.alarma_sensor_movimiento_entrada_hall','on') %} mdi:motion-sensor
           {% else %} mdi:motion-sensor-off
           {% endif %}
 
-      alarma_sensor_presencia_entrada_exterior:
+      # AQARA Movimiento Entrada Exterior - ZHA PENDING
+      alarma_sensor_movimiento_entrada_exterior:
         value_template: >-
-          {%  if is_state('input_boolean.alarma_sensor_presencia_entrada_exterior','on')
+          {%  if is_state('input_boolean.alarma_sensor_movimiento_entrada_exterior','on')
               and is_state('binary_sensor.motion_sensor_158d0001e637f6','on')
           %}
             true
@@ -276,13 +279,14 @@
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('binary_sensor.alarma_sensor_presencia_entrada_exterior','on') %} mdi:motion-sensor
+          {% if is_state('binary_sensor.alarma_sensor_movimiento_entrada_exterior','on') %} mdi:motion-sensor
           {% else %} mdi:motion-sensor-off
           {% endif %}
 
-      alarma_sensor_presencia_dormitorio_principal:
+      # AQARA Movimiento Dormitorio Principal - ZHA PENDING
+      alarma_sensor_movimiento_dormitorio_principal:
         value_template: >-
-          {%  if is_state('input_boolean.alarma_sensor_presencia_dormitorio_principal','on')
+          {%  if is_state('input_boolean.alarma_sensor_movimiento_dormitorio_principal','on')
               and is_state('binary_sensor.motion_sensor_158d0002ea1d0f','on')
           %}
             true
@@ -290,21 +294,22 @@
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('binary_sensor.alarma_sensor_presencia_dormitorio_principal','on') %} mdi:motion-sensor
+          {% if is_state('binary_sensor.alarma_sensor_movimiento_dormitorio_principal','on') %} mdi:motion-sensor
           {% else %} mdi:motion-sensor-off
           {% endif %}
 
-      alarma_sensor_presencia_pasillo:
+      # HUE Movimiento Pasillo - ZHA OK
+      alarma_sensor_movimiento_pasillo:
         value_template: >-
-          {%  if is_state('input_boolean.alarma_sensor_presencia_pasillo','on')
-              and is_state('binary_sensor.hue_sensor_pasillo_motion','on')
+          {%  if is_state('input_boolean.alarma_sensor_movimiento_pasillo','on')
+              and is_state('binary_sensor.binary_sensor.hue_movimiento_pasillo','on')
           %}
             true
           {% else %}
             false
           {% endif %}
         icon_template: >-
-          {% if is_state('binary_sensor.alarma_sensor_presencia_pasillo','on') %} mdi:motion-sensor
+          {% if is_state('binary_sensor.alarma_sensor_movimiento_pasillo','on') %} mdi:motion-sensor
           {% else %} mdi:motion-sensor-off
           {% endif %}
 
