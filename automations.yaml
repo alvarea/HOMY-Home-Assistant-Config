@@ -1032,8 +1032,7 @@
   condition:
     condition: and
     conditions:
-      - condition: time
-        before: '23:30:00'
+
       - condition: sun
         after: sunset
         after_offset: "+00:30:00"
@@ -1064,7 +1063,7 @@
   mode: restart
   trigger:
     - platform: state
-      entity_id: binary_sensor.hue_movimiento_pasillo
+      entity_id: binary_sensor.hue_movimiento_pasillo_presencia
       to: 'on'
   condition:
     condition: and
@@ -1072,9 +1071,12 @@
       #- condition: sun
       #  # after_offset: "-02:00:00"  ==> Horario Invierno GMT+1, en el amanecer -2h
       #  # after_offset: "-00:30:00" ==> Horario Verano GMT+2, el amanecer -30m
-      - condition: sun
-        after: sunset
-        after_offset: "-02:00:00"
+      #- condition: sun
+      #  after: sunset
+      #  after_offset: "-02:00:00"
+      - condition: numeric_state
+        entity_id: sensor.hue_movimiento_pasillo_luminosidad
+        below: 4
       - condition: state
         entity_id: light.luz_pasillo
         state: 'off'
@@ -1082,7 +1084,11 @@
     - service: light.turn_on
       entity_id: light.luz_pasillo
     # Espera de 5'
-    - delay: '00:05:00'
+    - delay:
+        minutes: >
+          {% if now().hour == 0 %} 2
+          {% else %} 5
+          {% endif %}
     # Luces Off + Led
     - service: light.turn_off
       entity_id: 

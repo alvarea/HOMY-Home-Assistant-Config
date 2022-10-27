@@ -22,9 +22,9 @@
   latitude: 37.3593
   longitude: -5.9867
   icon: mdi:school
-  radius: 300
+  radius: 200
 - name: Club Sato
   latitude: 37.3585411
   longitude: -6.0501132
   icon: mdi:tennis
-  radius: 100
+  radius: 50
